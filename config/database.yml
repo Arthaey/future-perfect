@@ -15,9 +15,16 @@ development:
   password: <%= ENV['FUTURE_PERFECT_DATABASE_PASSWORD'] %>
   port: 5432
 
+#test:
+#  <<: *default
+#  database: future-perfect_test
+
+#test:
+#  adapter: sqlite3
+#  database: ":memory:"
+
 test:
-  <<: *default
-  database: future-perfect_test
+  adapter: nulldb
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
