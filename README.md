@@ -1,6 +1,7 @@
 # Future Perfect
 
 [![Build Status](https://travis-ci.org/Arthaey/future-perfect.svg?branch=master)](https://travis-ci.org/Arthaey/future-perfect)
+[![Coverage Status](https://coveralls.io/repos/github/Arthaey/future-perfect/badge.svg)](https://coveralls.io/github/Arthaey/future-perfect)
 
 
 # Setup
