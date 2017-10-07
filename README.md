@@ -17,8 +17,8 @@
       - '\q'
 1. `rake db:create`
 1. `rake db:migrate`
-1. `RAILS_ENV=test rake db:create`
-1. `RAILS_ENV=test rake db:migrate`
+1. `rake db:create RAILS_ENV=test`
+1. `rake db:migrate RAILS_ENV=test`
 
 # Tests
 
