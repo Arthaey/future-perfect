@@ -1,24 +1,23 @@
-# README
+# Future Perfect
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/Arthaey/future-perfect.svg?branch=master)](https://travis-ci.org/Arthaey/future-perfect)
 
-Things you may want to cover:
 
-* Ruby version
+# Setup
 
-* System dependencies
+## Database
 
-* Configuration
+1. start Postgres
+1. `createuser -s future-perfect`
+1. `psql`
+      - `\password future-perfect` with "future-perfect" password
+        (dev &amp; test, _not prod!_)
+      - '\q'
+1. `rake db:create`
+1. `rake db:migrate`
+1. `RAILS_ENV=test rake db:create`
+1. `RAILS_ENV=test rake db:migrate`
 
-* Database creation
+# Tests
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`rake spec` (or `rspec`)

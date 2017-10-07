@@ -1,3 +1,13 @@
 language: ruby
 rvm:
   - 2.3
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c "CREATE DATABASE future-perfect;" -U postgres
+  - psql -c "CREATE USER future-perfect WITH PASSWORD 'future-perfect';" -U postgres
+
+script:
+  - rake
