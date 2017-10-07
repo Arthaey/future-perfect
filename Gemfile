@@ -20,6 +20,8 @@ gem 'turbolinks', '~> 5'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
+  gem 'simplecov', require: false
+  gem 'coveralls', require: false
   gem 'jasmine', '~> 2.8'
   gem 'rspec-rails', '~> 3.6'
 end

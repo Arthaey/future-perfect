@@ -7,6 +7,8 @@
 .env*
 !.env.sample
 
+/coverage
+
 # Ignore bundler config.
 /.bundle
 
