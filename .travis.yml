@@ -6,8 +6,15 @@ services:
   - postgresql
 
 before_script:
-  - psql -c "CREATE DATABASE future-perfect;" -U postgres
-  - psql -c "CREATE USER future-perfect WITH PASSWORD 'future-perfect';" -U postgres
+  - psql -c 'CREATE DATABASE "future-perfect";' -U postgres
+  - psql -c 'CREATE USER "future-perfect" WITH PASSWORD "${DATABASE_PASSWORD}";' -U postgres
 
 script:
-  - rake
+  - rspec
+
+deploy:
+  provider: heroku
+  api_key: $HEROKU_API_KEY
+  run:
+    - "rake db:migrate"
+  skip_cleanup: true # keep generated assets
