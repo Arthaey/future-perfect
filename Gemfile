@@ -17,8 +17,6 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'turbolinks', '~> 5'
 
-gem 'travis'
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
@@ -37,6 +35,11 @@ end
 
 group :test do
   gem 'activerecord-nulldb-adapter'
+end
+
+group :travis do
+  gem 'travis'
+  gem 'net-scp'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

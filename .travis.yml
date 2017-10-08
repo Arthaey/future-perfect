@@ -22,6 +22,9 @@ deploy:
   skip_cleanup: true # keep generated assets
 
 after_script:
+  - gem install travis
+  - gem install net-scp
   - curl https://raw.githubusercontent.com/Arthaey/spark_pr/bar/spark_pr.rb -o spark_pr.rb
-  - ruby create_travis_build_history_badge.rb
-  - curl --ftp-create-dirs -T "TravisBuildHistory-future-perfect.png" -u $FTP_USER:$FTP_PASSWORD ftp://arthaey.com/images/public/travis-build-badges/
+  - ruby bin/create_travis_build_history_badge.rb
+  - BADGE_IMAGE="TravisBuildHistory-future-perfect.png"
+  - ruby bin/upload_travis_build_history_badge.rb
