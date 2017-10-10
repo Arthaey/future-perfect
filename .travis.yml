@@ -22,7 +22,5 @@ deploy:
   skip_cleanup: true # keep generated assets
 
 after_script:
-  - curl https://raw.githubusercontent.com/Arthaey/spark_pr/bar/spark_pr.rb -o spark_pr.rb
-  - ruby bin/create_travis_build_history_badge.rb
-  - BADGE_IMAGE="TravisBuildHistory-future-perfect.png"
-  - ruby bin/upload_travis_build_history_badge.rb
+  - curl -o trigger.sh ttps://raw.githubusercontent.com/Arthaey/travis-build-history-badges/master/bin/trigger_badges_updates.sh
+  - sh trigger.sh
