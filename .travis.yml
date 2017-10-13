@@ -22,5 +22,5 @@ deploy:
   skip_cleanup: true # keep generated assets
 
 after_script:
-  - curl -o trigger.sh ttps://raw.githubusercontent.com/Arthaey/travis-build-history-badges/master/bin/trigger_badges_updates.sh
+  - curl -o trigger.sh https://raw.githubusercontent.com/Arthaey/travis-build-history-badges/master/bin/trigger_badges_updates.sh
   - sh trigger.sh
