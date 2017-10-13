@@ -19,20 +19,20 @@ group :production do
 end
 
 group :development, :test do
+  gem 'turbolinks', '~> 5'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
   gem 'simplecov', require: false
   gem 'coveralls', require: false
   gem 'jasmine', '~> 2.8'
   gem 'rspec-rails', '~> 3.6'
-  gem 'web-console', '>= 3.3.0' # <%= console %>
 end
 
 group :development do
-  gem 'turbolinks', '~> 5'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0' # <%= console %>
 end
 
 group :test do
