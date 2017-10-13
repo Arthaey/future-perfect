@@ -12,6 +12,7 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rails', '~> 5.1.2'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
+gem 'turbolinks', '~> 5'
 
 group :production do
   gem 'pg', '~> 0.18'
@@ -19,7 +20,6 @@ group :production do
 end
 
 group :development, :test do
-  gem 'turbolinks', '~> 5'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
   gem 'simplecov', require: false
