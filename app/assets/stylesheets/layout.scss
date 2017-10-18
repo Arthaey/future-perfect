@@ -9,12 +9,42 @@ body {
   flex-direction: column;
 }
 
-main, header, footer {
+main, header, footer, .sidebar {
   padding: $breathing-room;
 }
 
 main {
+  display: flex;
+  flex-direction: row;
+
   flex-grow: 1;
+}
+
+.past-present-future {
+  flex-grow: 1;
+}
+
+.heading-with-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar {
+  background-color: lighten($secondary-color, 55%);
+  border: 2px solid $secondary-color;;
+  border-radius: 1rem;
+  margin-left: $breathing-room * 2;
+  min-width: 15rem;
+
+  h2 {
+    @extend .heading-with-action;
+    margin-top: 0;
+
+    .icon-with-bg, .icon-without-bg {
+      font-size: $medium-font;
+    }
+  }
 }
 
 h1, h2 {

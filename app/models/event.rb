@@ -1,11 +1,11 @@
 Event = Struct.new(:type, :timestamp, :description) do
 
   def time
-    DateTime.parse(timestamp).strftime("%-I%P")
+    timestamp ? DateTime.parse(timestamp).strftime("%-I%P") : nil
   end
 
   def weekday
-    DateTime.parse(timestamp).strftime("%a")
+    timestamp ? DateTime.parse(timestamp).strftime("%a") : nil
   end
 
   def icon

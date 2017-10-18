@@ -18,6 +18,10 @@ fake_today = "2017-10-14"
   Event.new("apt", "2017-10-19 19:00 -0700", "appointment"),
 ]
 
+@todos = [
+  Event.new("read", nil, "'Some Book'"),
+]
+
 @weekdays = %w(Mon Tue Wed Thu Fri Sat Sun)
 @present_by_weekday = @present.group_by(&:weekday)
 @present_by_weekday.default = []
@@ -60,51 +64,64 @@ goal_tasks = [
 
 -%>
 
-<%- content_for(:title) { "Dashboard" } %>
+<%- content_for(:title) { "Future Perfect" } %>
 
-<h2>Past</h2>
-<ol class="events timeline-vertical">
-  <%- @past.each do |event| %>
-    <%= render partial: "event", object: event %>
-  <%- end %>
-</ol>
+<section class="past-present-future">
+  <h2>Past</h2>
+  <ol class="events timeline-vertical">
+    <%- @past.each do |event| %>
+      <%= render partial: "event", object: event %>
+    <%- end %>
+  </ol>
 
-<h2>Present</h2>
-<ol class="timeline-horizontal zebra">
-  <%- @weekdays.each do |weekday| %>
-  <li>
-    <h3>
-      <span><%= weekday %></span>
-      <%= interactive_icon(Icon.add) %>
-    </h3>
+  <h2>Present</h2>
+  <ol class="timeline-horizontal zebra">
+    <%- @weekdays.each do |weekday| %>
+    <li>
+      <h3>
+        <span><%= weekday %></span>
+        <%= interactive_icon(Icon.add) %>
+      </h3>
 
-    <ol class="events">
-      <%- @present_by_weekday[weekday].each do |event| %>
-        <%= render partial: "event", object: event %>
-      <%- end %>
-    </ol>
-  </li>
-  <%- end %>
-</ol>
+      <ol class="events">
+        <%- @present_by_weekday[weekday].each do |event| %>
+          <%= render partial: "event", object: event %>
+        <%- end %>
+      </ol>
+    </li>
+    <%- end %>
+  </ol>
 
-<h2>Future</h2>
-<ol class="timeline-horizontal zebra">
-  <%- @goal_categories.each do |category| %>
-  <li>
-    <h3>
-      <span><%= category.abbrev %></span>
-      <%= interactive_icon(Icon.add) %>
-    </h3>
+  <h2>Future</h2>
+  <ol class="timeline-horizontal zebra">
+    <%- @goal_categories.each do |category| %>
+    <li>
+      <h3>
+        <span><%= category.abbrev %></span>
+        <%= interactive_icon(Icon.add) %>
+      </h3>
 
-    <ol class="events">
-      <%- @present_goal_tasks_by_category[category.name].each do |goal_task| %>
-      <li class="event <%= goal_task.category_name %>">
-        <%= semantic_icon(goal_task.icon) %>
-        <span class="description"><%= goal_task.description %></span>
-      </li>
-      <%- end %>
-    </ol>
-  </li>
-  <%- end %>
-</ol>
+      <ol class="events">
+        <%- @present_goal_tasks_by_category[category.name].each do |goal_task| %>
+        <li class="event <%= goal_task.category_name %>">
+          <%= semantic_icon(goal_task.icon) %>
+          <span class="description"><%= goal_task.description %></span>
+        </li>
+        <%- end %>
+      </ol>
+    </li>
+    <%- end %>
+  </ol>
+</section>
 
+<section class="sidebar">
+  <h2>
+    <span>TODOs</span>
+    <%= interactive_icon(Icon.add) %>
+  </h2>
+  <ol class="events">
+    <%- @todos.each do |event| %>
+      <%= render partial: "event", object: event %>
+    <%- end %>
+  </ol>
+</section>

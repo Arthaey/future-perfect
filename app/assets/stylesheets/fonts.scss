@@ -1,7 +1,29 @@
+$x-large-font: 2rem;
+$large-font: 1.5rem;
+$medium-font: 1.2rem;
+$normal-font: 1rem;
 $small-font: 0.5rem;
 
-main {
-  h1, h2, h3, h4, h5, h6 {
-    color: $primary-color;
-  }
+h1, h2, h3, h4, h5, h6 {
+  color: $primary-color;
+}
+
+h1 {
+  font-size: $x-large-font;
+}
+
+h2 {
+  font-size: $large-font;
+}
+
+h3 {
+  font-size: $medium-font;
+}
+
+h4, h5, h6 {
+  font-size: $normal-font;
+}
+
+body {
+  font-size: $normal-font;
 }

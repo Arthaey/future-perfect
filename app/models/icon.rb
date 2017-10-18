@@ -11,6 +11,8 @@ class Icon
     case type
     when "apt"
       Icon.appointment
+    when "read"
+      Icon.book
     when "fun"
       Icon.fun
     when "task"
