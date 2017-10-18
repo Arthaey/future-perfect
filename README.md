@@ -10,7 +10,7 @@
 # Setup
 
 1. copy `.env.sample` to `.env.development`, `.env.test`, and `.env.production`.
-   Set the variables in those files as desired.
+1. Set the variables in those files as desired.
 
 ## Database
 
@@ -24,6 +24,11 @@
 1. `rake db:create RAILS_ENV=test`
 1. `rake db:migrate RAILS_ENV=test`
 
+# Run
+
+1. `bin/rails server`
+1. browse to http://localhost:3000/
+
 # Tests
 
-`rake spec` (or `rspec`)
+1. `rake test`

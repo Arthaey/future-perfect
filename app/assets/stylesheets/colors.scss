@@ -1,0 +1,33 @@
+// http://paletton.com/#uid=c0X3L4e3i0koDuqeZHGkcyOtzqYvgl8
+
+/* NAMED COLORS ***************************************************************/
+
+$white: #ffffff; // #fdfdfc;
+$black: #000000;
+
+$blue: #3254a2;
+$purple: #5035a7;
+$teal: #229191;
+$yellow: #f2b438;
+
+$yellow-light: lighten($yellow, 35%);
+$yellow-dark: darken($yellow, 35%);
+
+/* ROLE COLORS ****************************************************************/
+
+$body-bg: $white;
+$text-color: $black;
+
+$primary-color: $blue;
+$secondary-color: $purple;
+$accent-color: $teal;
+$action-color: $yellow;
+
+$action-light-color: $yellow-light;
+$action-dark-color: $yellow-dark;
+
+$header-bg: $yellow;
+$header-color: $yellow-light;
+
+$footer-bg: $purple;
+$footer-color: lighten($purple, 35%);

@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FuturePerfect</title>
+    <title><%= yield(:title) %> — FuturePerfect</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1><%= yield(:title) %></h2>
+    </header>
+
+    <main role="main">
+      <%= yield %>
+    </main>
+
+    <footer>
+      <p>
+        Icons: Font Awesome by Dave Gandy —
+        <a href="http://fontawesome.io">http://fontawesome.io</a>
+      </p>
+    </footer>
   </body>
 </html>

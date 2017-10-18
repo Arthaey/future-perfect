@@ -1,3 +1,77 @@
-// Place all the styles related to the dashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.timestamp {
+  color: $secondary-color;
+  font-size: $small-font;
+  vertical-align: middle;
+
+  &::before {
+    content: "[";
+  }
+
+  &::after {
+    content: "]";
+  }
+}
+
+.event {
+  line-height: 1rem;
+}
+
+.events {
+  list-style: none;
+  padding: 0;
+
+  li + li {
+    padding-top: $breathing-room;
+  }
+}
+
+.timeline-vertical {
+  @extend .events;
+
+  li {
+    border-left: 3px solid $secondary-color;
+    display: flex;
+    align-items: center;
+  }
+
+  .timestamp {
+    margin-left: $breathing-room / 2;
+  }
+
+  .icon-with-bg, .icon-without-bg {
+    top: 0;
+    left: -$breathing-room;
+  }
+}
+
+.timeline-horizontal {
+  @extend .events;
+  display: flex;
+
+  > li {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    padding: $breathing-room;
+  }
+
+  h3 {
+    border-bottom: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .event {
+    padding-left: $indent;
+  }
+
+  .events {
+    .icon-with-bg, .icon-without-bg {
+      display: inline;
+      line-height: 1rem;
+      width: $indent;
+      left: -$indent;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+header {
+  background-color: $header-bg;
+  color: $header-color;
+}
+
+footer {
+  background-color: $footer-bg;
+  color: $footer-color;
+  
+  a {
+    color: $action-color;
+  }
+}
+
+button, .button {
+  $base-size: 0.75rem;
+  $base-color: lighten($secondary-color, 40%);
+
+  $light-color: lighten($base-color, 10%);
+  $dark-color: darken($base-color, 10%);
+
+  background-color: $base-color;
+  background-image: linear-gradient(to bottom, $light-color, $dark-color);
+  color: $white;
+  font-size: $base-size;
+  border: 1px solid $dark-color;
+  border-radius: $base-size;
+  padding: ($base-size / 4) ($base-size / 2);
+  min-width: $base-size;
+  height: $base-size * 2;
+  line-height: $base-size;
+
+  &:hover {
+    background-color: $dark-color;
+    background-image: linear-gradient(to bottom, $dark-color, $light-color);
+    cursor: pointer;
+  }
+
+  &:active {
+    color: $dark-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.screenreader-only {
+  display: none;
+}
+
+.zebra > :nth-child(odd) {
+  background-color: lighten($secondary-color, 55%);
+}

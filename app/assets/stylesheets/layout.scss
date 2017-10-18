@@ -1,0 +1,23 @@
+$breathing-room: 1rem;
+$indent: 1.5rem;
+
+body {
+  background-color: $body-bg;
+  color: $text-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main, header, footer {
+  padding: $breathing-room;
+}
+
+main {
+  flex-grow: 1;
+}
+
+h1, h2 {
+  margin-top: $breathing-room * 2;
+  margin-bottom: $breathing-room;
+}

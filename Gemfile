@@ -14,6 +14,8 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 
+gem 'font-awesome-sass', '~> 4.7.0'
+
 group :production do
   gem 'pg', '~> 0.18'
   gem 'uglifier', '>= 1.3.0'
@@ -26,6 +28,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'jasmine', '~> 2.8'
   gem 'rspec-rails', '~> 3.6'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -33,6 +36,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0' # <%= console %>
+  gem 'pry'
 end
 
 group :test do
