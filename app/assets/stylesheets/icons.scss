@@ -32,6 +32,6 @@
   color: $body-bg;
 }
 
-.fa-circle {
+.fa-circle:not(.icon-bg) {
   font-size: 0.5rem;
 }

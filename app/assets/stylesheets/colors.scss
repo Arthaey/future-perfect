@@ -5,7 +5,6 @@
 $white: #ffffff; // #fdfdfc;
 $black: #000000;
 
-$blue: #3254a2;
 $purple: #5035a7;
 $teal: #229191;
 $yellow: #f2b438;
@@ -18,9 +17,9 @@ $yellow-dark: darken($yellow, 35%);
 $body-bg: $white;
 $text-color: $black;
 
-$primary-color: $blue;
-$secondary-color: $purple;
-$accent-color: $teal;
+$primary-color: $purple;
+$secondary-color: $teal;
+$accent-color: $yellow;
 $action-color: $yellow;
 
 $action-light-color: $yellow-light;

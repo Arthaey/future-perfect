@@ -1,5 +1,5 @@
 .timestamp {
-  color: $secondary-color;
+  color: $primary-color;
   font-size: $small-font;
   vertical-align: middle;
 
@@ -27,6 +27,7 @@
 
 .timeline-vertical {
   @extend .events;
+  margin-left: $breathing-room;
 
   li {
     border-left: 3px solid $secondary-color;
@@ -72,4 +73,8 @@
       left: -$indent;
     }
   }
+}
+
+.today {
+  border: 2px solid $accent-color;
 }

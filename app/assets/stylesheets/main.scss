@@ -14,7 +14,7 @@ footer {
 
 button, .button {
   $base-size: 0.75rem;
-  $base-color: lighten($secondary-color, 40%);
+  $base-color: lighten($primary-color, 40%);
 
   $light-color: lighten($base-color, 10%);
   $dark-color: darken($base-color, 10%);
@@ -50,5 +50,5 @@ button, .button {
 }
 
 .zebra > :nth-child(odd) {
-  background-color: lighten($secondary-color, 55%);
+  background-color: lighten($primary-color, 55%);
 }
