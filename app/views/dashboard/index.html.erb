@@ -6,21 +6,21 @@ fake_today = "2017-10-14"
 @now = DateTime.parse(fake_today)
 
 @past = [
-  Event.new("task", "2017-10-14", "trimmed plants in the front yard"),
-  Event.new("task", "2017-10-14", "entered receipts into YNAB"),
-  Event.new("task", "2017-10-15", "made car care checklist for Acura"),
-  Event.new("tweet", "2017-10-17", "https://twitter.com/arthaey/status/920298884219387905"),
+  Task.new("trimmed plants in the front yard", when: "2017-10-14"),
+  Task.new("entered receipts into YNAB", when: "2017-10-14"),
+  Task.new("made car care checklist for Acura", when: "2017-10-15"),
+  Tweet.new("https://twitter.com/arthaey/status/920298884219387905", when: "2017-10-17"),
 ]
 
 @present = [
-  Event.new("fun", "2017-10-16 18:00 -0700", "arcade & Olive Garden"),
-  Event.new("appointment", "2017-10-18 19:00 -0700", "something else that takes up two lines"),
-  Appointment.new(description: "an appointment", completed_at: "2017-10-18 18:00 -0700"),
-  Appointment.new(description: "other appointment", completed_at: "2017-10-19 19:00 -0700"),
+  Fun.new("arcade & Olive Garden", when: "2017-10-16 18:00 -0700"),
+  Appointment.new("something else that takes up two lines", when: "2017-10-18 19:00 -0700"),
+  Appointment.new("an appointment", when: "2017-10-18 18:00 -0700"),
+  Appointment.new("other appointment", when: "2017-10-19 19:00 -0700"),
 ]
 
 @todos = [
-  Event.new("read", nil, "'Some Book'"),
+  Book.new("'Some Book'"),
 ]
 
 @today_weekday = Date.today.strftime("%a")
@@ -72,7 +72,7 @@ goal_tasks = [
   <h2>Past</h2>
   <ol class="events timeline-vertical">
     <%- @past.each do |event| %>
-      <%= render partial: "event", object: event %>
+      <%= render partial: "item", object: event %>
     <%- end %>
   </ol>
 
@@ -87,7 +87,7 @@ goal_tasks = [
 
       <ol class="events">
         <%- @present_by_weekday[weekday].each do |event| %>
-          <%= render partial: "event", object: event %>
+          <%= render partial: "item", object: event %>
         <%- end %>
       </ol>
     </li>
@@ -123,7 +123,7 @@ goal_tasks = [
   </h2>
   <ol class="events">
     <%- @todos.each do |event| %>
-      <%= render partial: "event", object: event %>
+      <%= render partial: "item", object: event %>
     <%- end %>
   </ol>
 </section>

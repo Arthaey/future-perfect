@@ -1,0 +1,7 @@
+<li class="event <%= item.type %>">
+  <%= semantic_icon(item.icon) %>
+  <span class="description"><%= item.display %></span>
+  <%- if item.relative_time %>
+  <span class="timestamp"><%= item.relative_time %></span>
+  <%- end %>
+</li>
