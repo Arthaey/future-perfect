@@ -9,13 +9,14 @@ fake_today = "2017-10-14"
   Event.new("task", "2017-10-14", "trimmed plants in the front yard"),
   Event.new("task", "2017-10-14", "entered receipts into YNAB"),
   Event.new("task", "2017-10-15", "made car care checklist for Acura"),
+  Event.new("tweet", "2017-10-17", "https://twitter.com/arthaey/status/920298884219387905"),
 ]
 
 @present = [
   Event.new("fun", "2017-10-16 18:00 -0700", "arcade & Olive Garden"),
-  Event.new("apt", "2017-10-18 13:00 -0700", "appointment"),
-  Event.new("apt", "2017-10-18 19:00 -0700", "something else that takes up two lines"),
-  Event.new("apt", "2017-10-19 19:00 -0700", "appointment"),
+  Event.new("appointment", "2017-10-18 19:00 -0700", "something else that takes up two lines"),
+  Appointment.new(description: "an appointment", completed_at: "2017-10-18 18:00 -0700"),
+  Appointment.new(description: "other appointment", completed_at: "2017-10-19 19:00 -0700"),
 ]
 
 @todos = [

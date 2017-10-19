@@ -3,9 +3,11 @@ ICON_MAPPINGS = {
   appointment:    Icon.new("appointment", "calendar-check-o", "square"),
   book:           Icon.new("book", "book"),
   circle:         Icon.new("•", "circle"),
-  misc:           Icon.new("miscellaneous", "asterisk"),
+  task:           Icon.new("task", "check-square-o", "square"),
   fun:            Icon.new("fun", "smile-o", "circle"),
-  completed_task: Icon.new("completed task", "check-square-o", "square"),
+  misc:           Icon.new("miscellaneous", "asterisk"),
+  tweet:          Icon.new("Twitter", "twitter", "circle"),
+
   # at (email?)
   # beer
   # bell
@@ -84,6 +86,5 @@ ICON_MAPPINGS = {
   # stack-overflow
   # steam-square
   # tumblr-square
-  # twitter
   # youtube
 }

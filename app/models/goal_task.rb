@@ -4,6 +4,6 @@ GoalTask = Struct.new(:description, :goal) do
   end
 
   def icon
-    Icon.for_type(goal.category.name)
+    Icon.send(goal.category.name)
   end
 end

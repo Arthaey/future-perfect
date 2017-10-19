@@ -9,7 +9,7 @@ Event = Struct.new(:type, :timestamp, :description) do
   end
 
   def icon
-    Icon.for_type(type)
+    Icon.send(type)
   end
 
 end
