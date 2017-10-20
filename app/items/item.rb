@@ -34,18 +34,25 @@ class Item
   end
 
   def timestamp
-    completed_at || due_at
+    return nil if completed_at.blank? && due_at.blank?
+    DateTime.parse(completed_at || due_at)
   end
 
   def weekday
-    timestamp ? DateTime.parse(timestamp).strftime("%a") : nil
+    timestamp ? timestamp.strftime("%a") : nil
   end
 
   def relative_time
-    if completed_at
-      DateTime.parse(completed_at).strftime("%-I%P")
-    elsif due_at
-      DateTime.parse(due_at).strftime("%a")
+    return nil unless timestamp
+
+    today = Date.today
+    is_this_week = timestamp.between?(today.beginning_of_week, today.end_of_week)
+
+    if is_this_week
+      timestamp.strftime("%-I%P") # 2pm
+    else
+      timestamp.strftime("%F") # 1999-01-01
+      #timestamp.strftime("%a") # Sat
     end
   end
 end
