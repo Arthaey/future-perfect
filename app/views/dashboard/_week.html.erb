@@ -1,0 +1,39 @@
+<%-
+# HARDCODED PROTOTYPE DATA #####################################################
+
+fake_today = "2017-10-14"
+@now = DateTime.parse(fake_today)
+
+@today_weekday = Date.today.strftime("%a")
+@weekdays = %w(Mon Tue Wed Thu Fri Sat Sun)
+
+@present = [
+  Fun.new("arcade & Olive Garden", when: "2017-10-16 18:00 -0700"),
+  Appointment.new("something else that takes up two lines", when: "2017-10-18 19:00 -0700"),
+  Appointment.new("an appointment", when: "2017-10-18 18:00 -0700"),
+  Appointment.new("other appointment", when: "2017-10-19 19:00 -0700"),
+]
+
+@present_by_weekday = @present.group_by(&:weekday)
+@present_by_weekday.default = []
+
+# END HARDCODED DATA ###########################################################
+-%>
+
+<h2>Present</h2>
+<ol class="timeline-horizontal zebra">
+  <%- @weekdays.each do |weekday| %>
+  <li class="<%= @today_weekday == weekday ? 'today' : '' %>">
+    <h3>
+      <span><%= weekday %></span>
+      <%= interactive_icon(Icon.add) %>
+    </h3>
+
+    <ol class="events">
+      <%- @present_by_weekday[weekday].each do |event| %>
+        <%= render partial: "item", object: event %>
+      <%- end %>
+    </ol>
+  </li>
+  <%- end %>
+</ol>

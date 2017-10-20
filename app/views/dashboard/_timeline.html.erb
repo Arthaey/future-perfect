@@ -1,0 +1,17 @@
+<%-
+# HARDCODED PROTOTYPE DATA #####################################################
+@past = [
+  Task.new("trimmed plants in the front yard", when: "2017-10-14"),
+  Task.new("entered receipts into YNAB", when: "2017-10-14"),
+  Task.new("made car care checklist for Acura", when: "2017-10-15"),
+  Tweet.new("https://twitter.com/arthaey/status/920298884219387905", when: "2017-10-17"),
+]
+# END HARDCODED DATA ###########################################################
+-%>
+
+<h2>Past</h2>
+<ol class="events timeline-vertical">
+  <%- @past.each do |event| %>
+    <%= render partial: "item", object: event %>
+  <%- end %>
+</ol>

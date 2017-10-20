@@ -1,0 +1,60 @@
+<%-
+# HARDCODED PROTOTYPE DATA #####################################################
+
+marriage = GoalCategory.new("Marriage", "Ma")
+career = GoalCategory.new("Career", "Ca")
+health = GoalCategory.new("Health", "He")
+adulting = GoalCategory.new("Adulting", "Adlt")
+money = GoalCategory.new("Money", "Mo")
+relaxing = GoalCategory.new("Relaxing", "Re")
+language = GoalCategory.new("Language", "La")
+creativity = GoalCategory.new("Creativity", "Cr")
+friends = GoalCategory.new("Friends", "Fr")
+adventure = GoalCategory.new("Adventure", "Adv")
+
+@goal_categories = [
+  marriage,
+  career,
+  health,
+  adulting,
+  money,
+  relaxing,
+  language,
+  creativity,
+  friends,
+  adventure,
+]
+
+budgetGoal = Goal.new("budget", money)
+
+goal_tasks = [
+  GoalTask.new("enter receipts", budgetGoal),
+]
+
+@present_goal_tasks = goal_tasks
+@present_goal_tasks_by_category = @present_goal_tasks.group_by(&:category_name)
+@present_goal_tasks_by_category.default = []
+
+# END HARDCODED DATA ###########################################################
+-%>
+
+<h2>Future</h2>
+<ol class="timeline-horizontal zebra">
+  <%- @goal_categories.each do |category| %>
+  <li>
+    <h3>
+      <span><%= category.abbrev %></span>
+      <%= interactive_icon(Icon.add) %>
+    </h3>
+
+    <ol class="events">
+      <%- @present_goal_tasks_by_category[category.name].each do |goal_task| %>
+      <li class="event <%= goal_task.category_name %>">
+        <%= semantic_icon(goal_task.icon) %>
+        <span class="description"><%= goal_task.description %></span>
+      </li>
+      <%- end %>
+    </ol>
+  </li>
+  <%- end %>
+</ol>

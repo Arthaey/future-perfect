@@ -1,0 +1,17 @@
+<%-
+# HARDCODED PROTOTYPE DATA #####################################################
+@todos = [
+  Book.new("'Some Book'"),
+]
+# END HARDCODED DATA ###########################################################
+-%>
+
+<h2>
+  <span>TODOs</span>
+  <%= interactive_icon(Icon.add) %>
+</h2>
+<ol class="events">
+  <%- @todos.each do |event| %>
+    <%= render partial: "item", object: event %>
+  <%- end %>
+</ol>

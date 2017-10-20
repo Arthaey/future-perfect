@@ -1,129 +1,16 @@
 <%-
-
 # HARDCODED PROTOTYPE DATA #####################################################
-
-fake_today = "2017-10-14"
-@now = DateTime.parse(fake_today)
-
-@past = [
-  Task.new("trimmed plants in the front yard", when: "2017-10-14"),
-  Task.new("entered receipts into YNAB", when: "2017-10-14"),
-  Task.new("made car care checklist for Acura", when: "2017-10-15"),
-  Tweet.new("https://twitter.com/arthaey/status/920298884219387905", when: "2017-10-17"),
-]
-
-@present = [
-  Fun.new("arcade & Olive Garden", when: "2017-10-16 18:00 -0700"),
-  Appointment.new("something else that takes up two lines", when: "2017-10-18 19:00 -0700"),
-  Appointment.new("an appointment", when: "2017-10-18 18:00 -0700"),
-  Appointment.new("other appointment", when: "2017-10-19 19:00 -0700"),
-]
-
-@todos = [
-  Book.new("'Some Book'"),
-]
-
-@today_weekday = Date.today.strftime("%a")
-@weekdays = %w(Mon Tue Wed Thu Fri Sat Sun)
-@present_by_weekday = @present.group_by(&:weekday)
-@present_by_weekday.default = []
-
-marriage = GoalCategory.new("Marriage", "Ma")
-career = GoalCategory.new("Career", "Ca")
-health = GoalCategory.new("Health", "He")
-adulting = GoalCategory.new("Adulting", "Adlt")
-money = GoalCategory.new("Money", "Mo")
-relaxing = GoalCategory.new("Relaxing", "Re")
-language = GoalCategory.new("Language", "La")
-creativity = GoalCategory.new("Creativity", "Cr")
-friends = GoalCategory.new("Friends", "Fr")
-adventure = GoalCategory.new("Adventure", "Adv")
-
-@goal_categories = [
-  marriage,
-  career,
-  health,
-  adulting,
-  money,
-  relaxing,
-  language,
-  creativity,
-  friends,
-  adventure,
-]
-
-budgetGoal = Goal.new("budget", money)
-
-goal_tasks = [
-  GoalTask.new("enter receipts", budgetGoal),
-]
-
-@present_goal_tasks = goal_tasks
-@present_goal_tasks_by_category = @present_goal_tasks.group_by(&:category_name)
-@present_goal_tasks_by_category.default = []
-
 # END HARDCODED DATA ###########################################################
-
 -%>
 
 <%- content_for(:title) { "Future Perfect" } %>
 
 <section class="past-present-future">
-  <h2>Past</h2>
-  <ol class="events timeline-vertical">
-    <%- @past.each do |event| %>
-      <%= render partial: "item", object: event %>
-    <%- end %>
-  </ol>
-
-  <h2>Present</h2>
-  <ol class="timeline-horizontal zebra">
-    <%- @weekdays.each do |weekday| %>
-    <li class="<%= @today_weekday == weekday ? 'today' : '' %>">
-      <h3>
-        <span><%= weekday %></span>
-        <%= interactive_icon(Icon.add) %>
-      </h3>
-
-      <ol class="events">
-        <%- @present_by_weekday[weekday].each do |event| %>
-          <%= render partial: "item", object: event %>
-        <%- end %>
-      </ol>
-    </li>
-    <%- end %>
-  </ol>
-
-  <h2>Future</h2>
-  <ol class="timeline-horizontal zebra">
-    <%- @goal_categories.each do |category| %>
-    <li>
-      <h3>
-        <span><%= category.abbrev %></span>
-        <%= interactive_icon(Icon.add) %>
-      </h3>
-
-      <ol class="events">
-        <%- @present_goal_tasks_by_category[category.name].each do |goal_task| %>
-        <li class="event <%= goal_task.category_name %>">
-          <%= semantic_icon(goal_task.icon) %>
-          <span class="description"><%= goal_task.description %></span>
-        </li>
-        <%- end %>
-      </ol>
-    </li>
-    <%- end %>
-  </ol>
+  <%= render partial: "timeline" %>
+  <%= render partial: "week" %>
+  <%= render partial: "goals" %>
 </section>
 
 <section class="sidebar">
-  <h2>
-    <span>TODOs</span>
-    <%= interactive_icon(Icon.add) %>
-  </h2>
-  <ol class="events">
-    <%- @todos.each do |event| %>
-      <%= render partial: "item", object: event %>
-    <%- end %>
-  </ol>
+  <%= render partial: "todos" %>
 </section>
