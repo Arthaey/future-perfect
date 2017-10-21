@@ -1,2 +1,0 @@
-class Fun < Item
-end
