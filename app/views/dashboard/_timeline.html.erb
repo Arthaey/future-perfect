@@ -12,6 +12,6 @@
 <h2>Past</h2>
 <ol class="events timeline-vertical">
   <%- @past.each do |event| %>
-    <%= render partial: "item", object: event %>
+    <li><%= render partial: "item", object: event %></li>
   <%- end %>
 </ol>

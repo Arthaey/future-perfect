@@ -14,6 +14,14 @@
 
 .event {
   line-height: 1rem;
+  padding-left: $indent;
+
+  .icon-with-bg, .icon-without-bg {
+    display: inline;
+    line-height: 1rem;
+    width: $indent;
+    left: -$indent;
+  }
 }
 
 .events {
@@ -41,7 +49,7 @@
 
   .icon-with-bg, .icon-without-bg {
     top: 0;
-    left: -$breathing-room;
+    left: -($indent + $breathing-room / 2);
   }
 }
 
@@ -62,19 +70,97 @@
   }
 
   .event {
-    padding-left: $indent;
-  }
-
-  .events {
-    .icon-with-bg, .icon-without-bg {
-      display: inline;
-      line-height: 1rem;
-      width: $indent;
-      left: -$indent;
-    }
   }
 }
 
 .today {
   border: 2px solid $accent-color;
+}
+
+.pomodoros {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  li + li {
+    padding-top: 0;
+  }
+}
+
+.pomodoro {
+  $img-size: 75px;
+
+  display: flex;
+  margin-bottom: $breathing-room;
+  margin-right: $breathing-room;
+
+  .img-container {
+    margin-right: $breathing-room;
+    width: $img-size;
+    height: $img-size;
+    position: relative;
+  }
+
+  .img-overlay {
+    text-align: center;
+    font-weight: bold;
+    font-size: $large-font;
+    line-height: $img-size;
+    width: $img-size;
+    height: $img-size;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .icon {
+      display: none;
+    }
+  }
+
+  img {
+    width: $img-size;
+    height: $img-size;
+  }
+
+  .event {
+    max-width: $item-narrow-width;
+    margin-right: $breathing-room;
+  }
+
+  &.unstarted {
+    img {
+      filter: $gray-filter;
+    }
+
+    &:hover img {
+      filter: initial;
+      cursor: pointer;
+    }
+  }
+
+  &.active {
+    img {
+      filter: $outline-filter;
+    }
+
+    .img-overlay .icon {
+      @extend %spin;
+      color: $action-color;
+      display: block;
+    }
+
+    .event .description {
+      color: $primary-color;
+    }
+  }
+
+  &.completed {
+    img {
+      opacity: 0.5;
+    }
+  }
 }

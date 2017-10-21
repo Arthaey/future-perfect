@@ -14,7 +14,8 @@
   color: $secondary-color;
   cursor: pointer;
 
-  .icon {
+  &.icon-without-bg:hover {
+    color: $action-color;
   }
 
   &:hover .icon-bg {
@@ -22,7 +23,7 @@
   }
 
   &:active {
-    // match $action-color but "inverted" icon
+    // fiddled with color picked to match $action-color to "inverted" icon
     filter: invert(100%) hue-rotate(180deg) brightness(260%) saturate(95%);
   }
 }

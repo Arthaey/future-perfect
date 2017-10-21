@@ -12,7 +12,6 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rails', '~> 5.1.2'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
-gem 'turbolinks', '~> 5'
 
 gem 'font-awesome-sass', '~> 4.7.0'
 

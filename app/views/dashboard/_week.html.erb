@@ -21,6 +21,7 @@ fake_today = "2017-10-14"
 -%>
 
 <h2>Present</h2>
+
 <ol class="timeline-horizontal zebra">
   <%- @weekdays.each do |weekday| %>
   <li class="<%= @today_weekday == weekday ? 'today' : '' %>">
@@ -31,9 +32,19 @@ fake_today = "2017-10-14"
 
     <ol class="events">
       <%- @present_by_weekday[weekday].each do |event| %>
-        <%= render partial: "item", object: event %>
+        <li><%= render partial: "item", object: event %></li>
       <%- end %>
     </ol>
   </li>
   <%- end %>
+</ol>
+
+<ol class="pomodoros events">
+  <%= render partial: "pomodoro", object: Pomodoro.done(Book.new("War and Peace"), in: 20.minutes) %>
+  <%= render partial: "pomodoro", object: Pomodoro.start(Fun.new("went to a new cafe with some folks")) %>
+  <%= render partial: "pomodoro", object: Pomodoro.new(Appointment.new("Foo"), Task.new("Bar"), Task.new("Qux")) %>
+  <%= render partial: "pomodoro", object: Pomodoro.new() %>
+  <%= render partial: "pomodoro", object: Pomodoro.new() %>
+  <%= render partial: "pomodoro", object: Pomodoro.new() %>
+  <%= render partial: "pomodoro", object: Pomodoro.new() %>
 </ol>

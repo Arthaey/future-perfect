@@ -1,6 +1,8 @@
 $breathing-room: 1rem;
 $indent: 1.5rem;
 
+$item-narrow-width: 15rem;
+
 body {
   background-color: $body-bg;
   color: $text-color;
@@ -20,7 +22,7 @@ main {
   flex-grow: 1;
 }
 
-.past-present-future {
+.main-content {
   flex-grow: 1;
 }
 
@@ -35,7 +37,7 @@ main {
   border: 2px solid $primary-color;;
   border-radius: 1rem;
   margin-left: $breathing-room * 2;
-  min-width: 15rem;
+  min-width: $item-narrow-width;
 
   h2 {
     @extend .heading-with-action;

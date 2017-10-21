@@ -12,6 +12,6 @@
 </h2>
 <ol class="events">
   <%- @todos.each do |event| %>
-    <%= render partial: "item", object: event %>
+    <li><%= render partial: "item", object: event %></li>
   <%- end %>
 </ol>

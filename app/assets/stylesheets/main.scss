@@ -52,3 +52,22 @@ button, .button {
 .zebra > :nth-child(odd) {
   background-color: lighten($primary-color, 55%);
 }
+
+%spin {
+  animation-name: spin;
+  animation-duration: 75s;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(3600deg) }
+}
+
+$gray-filter: grayscale(100%) brightness(400%);
+$faint-color-filter: grayscale(90%) brightness(400%);
+
+$outline-filter:
+  drop-shadow( 2px  2px 0 $action-color)
+  drop-shadow(-2px  2px 0 $action-color)
+  drop-shadow( 2px -2px 0 $action-color)
+  drop-shadow(-2px -2px 0 $action-color);
