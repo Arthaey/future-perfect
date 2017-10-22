@@ -20,7 +20,7 @@ end
   <%- end %>
 </section>
 
-<section class="sidebar">
+<%- content_for(:sidebar) do %>
   <h2>Sidebar</h2>
   <p>paragraph</p>
 
@@ -29,4 +29,4 @@ end
     <%= interactive_icon(Icon.add) %>
   </h2>
   <p>paragraph</p>
-</section>
+<%- end %>

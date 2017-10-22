@@ -1,16 +1,34 @@
 <%-
 # HARDCODED PROTOTYPE DATA #####################################################
+
+minimum_pomodoros = 8 # arbitrary target
+@pomodoros = [
+  Pomodoro.done(Book.new("War and Peace"), in: 20.minutes),
+  Pomodoro.start(Fun.new("went to a new cafe with some folks")),
+  Pomodoro.new(Appointment.new("Foo"), Task.new("Bar"), Task.new("Qux")),
+]
+while @pomodoros.count < minimum_pomodoros
+  @pomodoros.push(Pomodoro.new())
+end
+
 # END HARDCODED DATA ###########################################################
 -%>
 
-<%- content_for(:title) { "Future Perfect" } %>
+<%- content_for(:title) { "Present & Future" } %>
 
-<section class="main-content">
-  <%= render partial: "timeline" %>
-  <%= render partial: "week" %>
-  <%= render partial: "goals" %>
-</section>
+<h2>Today</h2>
+<ol class="pomodoros events">
+  <%- @pomodoros.each do |pomodoro| %>
+  <%= render partial: "pomodoro", object: pomodoro %>
+  <%- end %>
+</ol>
 
-<section class="sidebar">
+<h2>This Week</h2>
+<%= render partial: "week" %>
+
+<h2>Beyond</h2>
+<%= render partial: "goals" %>
+
+<%- content_for(:sidebar) do %>
   <%= render partial: "todos" %>
-</section>
+<%- end %>

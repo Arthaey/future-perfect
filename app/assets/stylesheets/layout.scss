@@ -15,6 +15,40 @@ main, header, footer, .sidebar {
   padding: $breathing-room;
 }
 
+header {
+  padding-bottom: 0;
+  border-bottom: 2px solid $secondary-color;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin-bottom: 0;
+
+  a {
+    color: $secondary-color;
+  }
+
+  li {
+    font-weight: bold;
+    background-color: lighten($secondary-color, 50%);
+    border: 2px solid $secondary-color;
+    border-bottom: none;
+    border-radius: 1rem 1rem 0 0;
+    padding: $breathing-room / 2;
+    margin-right: $breathing-room;
+  }
+
+  li.current {
+    color: darken($secondary-color, 15%);
+    background-color: lighten($secondary-color, 55%);
+  }
+
+  li:not(.current) {
+    cursor: pointer;
+  }
+}
+
 main {
   display: flex;
   flex-direction: row;

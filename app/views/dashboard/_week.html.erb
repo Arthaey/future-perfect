@@ -17,20 +17,8 @@ fake_today = "2017-10-14"
 @present_by_weekday = @present.group_by(&:weekday)
 @present_by_weekday.default = []
 
-minimum_pomodoros = 8 # arbitrary target
-@pomodoros = [
-  Pomodoro.done(Book.new("War and Peace"), in: 20.minutes),
-  Pomodoro.start(Fun.new("went to a new cafe with some folks")),
-  Pomodoro.new(Appointment.new("Foo"), Task.new("Bar"), Task.new("Qux")),
-]
-while @pomodoros.count < minimum_pomodoros
-  @pomodoros.push(Pomodoro.new())
-end
-
 # END HARDCODED DATA ###########################################################
 -%>
-
-<h2>Present</h2>
 
 <ol class="timeline-horizontal zebra">
   <%- @weekdays.each do |weekday| %>
@@ -46,11 +34,5 @@ end
       <%- end %>
     </ol>
   </li>
-  <%- end %>
-</ol>
-
-<ol class="pomodoros events">
-  <%- @pomodoros.each do |pomodoro| %>
-  <%= render partial: "pomodoro", object: pomodoro %>
   <%- end %>
 </ol>

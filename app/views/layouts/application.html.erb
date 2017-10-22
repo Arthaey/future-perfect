@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> — FuturePerfect</title>
+    <title><%= yield(:title) %> — Future Perfect</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -10,10 +10,24 @@
   <body>
     <header>
       <h1><%= yield(:title) %></h2>
+      <nav>
+        <ul>
+          <%= render partial: "nav_link", locals: { text: "Past", paths: [timeline_path] } %>
+          <%= render partial: "nav_link", locals: { text: "Present & Future", paths: [dashboard_path, root_path] } %>
+        </ul>
+      </nav>
     </header>
 
     <main role="main">
-      <%= yield %>
+      <section class="main-content">
+        <%= yield %>
+      </section>
+
+      <%- if content_for?(:sidebar) %>
+      <section class="sidebar">
+        <%= yield(:sidebar) %>
+      </section>
+      <%- end %>
     </main>
 
     <footer>

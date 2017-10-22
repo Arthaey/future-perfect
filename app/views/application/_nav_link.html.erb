@@ -1,0 +1,9 @@
+<%# #link_to_unless_current doesn't seem to work for root_path && index %>
+<%- is_current = paths.any? { |path| current_page?(path) } %>
+<li class="<%= is_current ? "current" : "" %>">
+  <%- if is_current %>
+    <%= text %>
+  <%- else %>
+    <%= link_to(text, paths.first) %>
+  <%- end %>
+</li>
