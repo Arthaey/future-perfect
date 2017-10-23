@@ -1,27 +1,10 @@
 <%-
 # HARDCODED PROTOTYPE DATA #####################################################
-
-book = Book.new("https://www.goodreads.com/book/show/656", when: "2017-10-10")
-
-minimum_pomodoros = 8 # arbitrary target
-@pomodoros = [
-  Pomodoro.done(book, in: 20.minutes),
-  Pomodoro.start(Fun.new("went to a new cafe with some folks")),
-  Pomodoro.new(Appointment.new("Foo"), Task.new("Bar"), Task.new("Qux")),
-]
-while @pomodoros.count < minimum_pomodoros
-  @pomodoros.push(Pomodoro.new())
-end
-
 # END HARDCODED DATA ###########################################################
 -%>
 
 <h2>Today</h2>
-<ol class="pomodoros events">
-  <%- @pomodoros.each do |pomodoro| %>
-  <%= render partial: "pomodoro", object: pomodoro %>
-  <%- end %>
-</ol>
+<%= render partial: "pomodoros" %>
 
 <h2>This Week</h2>
 <%= render partial: "week" %>

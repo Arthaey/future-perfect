@@ -1,0 +1,89 @@
+$pomodoro-img-size: 3rem;
+
+.pomodoros-and-items {
+  display: flex;
+}
+
+.pomodoros {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: ($pomodoro-img-size + $breathing-room + 1) * 4;
+
+  li + li {
+    padding-top: 0;
+  }
+}
+
+.pomodoro {
+  display: flex;
+  margin-right: $breathing-room;
+
+  .img-container {
+    width: $pomodoro-img-size;
+    height: $pomodoro-img-size;
+    position: relative;
+  }
+
+  .img-overlay {
+    text-align: center;
+    font-weight: bold;
+    line-height: $pomodoro-img-size;
+    width: $pomodoro-img-size;
+    height: $pomodoro-img-size;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .icon {
+      display: none;
+    }
+  }
+
+  img {
+    width: $pomodoro-img-size;
+    height: $pomodoro-img-size;
+  }
+
+  .event {
+    max-width: $item-narrow-width;
+    margin-right: $breathing-room;
+  }
+
+  &.unstarted {
+    img {
+      filter: $gray-filter;
+    }
+
+    &:hover img {
+      filter: initial;
+      cursor: pointer;
+    }
+  }
+
+  &.active {
+    img {
+      filter: $outline-filter;
+    }
+
+    .img-overlay .icon {
+      @extend %spin;
+      color: $action-color;
+      display: block;
+    }
+
+    .event .description {
+      color: $primary-color;
+    }
+  }
+
+  &.completed {
+    img {
+      opacity: 0.5;
+    }
+  }
+}

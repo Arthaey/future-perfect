@@ -6,12 +6,4 @@
       <%= interactive_icon(Icon.timer) %>
     </div>
   </div>
-
-  <%- if !pomodoro.items.empty? %>
-  <ol class="events">
-    <%- pomodoro.items.each do |item| %>
-    <li><%= render partial: "item", object: item %></li>
-    <%- end %>
-  </ol>
-  <%- end %>
 </li>
