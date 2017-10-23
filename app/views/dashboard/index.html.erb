@@ -1,9 +1,11 @@
 <%-
 # HARDCODED PROTOTYPE DATA #####################################################
 
+book = Book.new("https://www.goodreads.com/book/show/656", when: "2017-10-10")
+
 minimum_pomodoros = 8 # arbitrary target
 @pomodoros = [
-  Pomodoro.done(Book.new("War and Peace"), in: 20.minutes),
+  Pomodoro.done(book, in: 20.minutes),
   Pomodoro.start(Fun.new("went to a new cafe with some folks")),
   Pomodoro.new(Appointment.new("Foo"), Task.new("Bar"), Task.new("Qux")),
 ]
@@ -13,8 +15,6 @@ end
 
 # END HARDCODED DATA ###########################################################
 -%>
-
-<%- content_for(:title) { "Present & Future" } %>
 
 <h2>Today</h2>
 <ol class="pomodoros events">

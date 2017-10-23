@@ -22,7 +22,7 @@ class Item
 
   # Subclasses should override this method to customize their appaearance.
   def display
-    description
+    description || type
   end
 
   def type

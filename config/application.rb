@@ -16,16 +16,25 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+def fake_http_response(url, filename)
+  http_response = File.read("spec/http_responses/#{filename}")
+  FakeWeb.register_uri(:get, url, body: http_response, content_type: "text/html")
+end
+
 module FuturePerfect
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
+    # Don't generate system test files.
+    config.generators.system_tests = nil
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    FakeWeb.allow_net_connect = %r(https://coveralls.io)
+    fake_http_response(%r(https://www.goodreads.com/), "goodreads.html")
+    fake_http_response(%r(https://www.amazon.com/), "amazon.html")
   end
 end
