@@ -1,4 +1,9 @@
 RSpec.describe Item do
+  it "displays the description given" do
+    item = Item.new("my item")
+    expect(item.display).to eq("my item")
+  end
+
   context "#relative_time" do
     before(:each) do
       fake_today = DateTime.parse("1999-01-02 03:04:05 -0700") # Saturday

@@ -13,7 +13,9 @@ gem 'rails', '~> 5.1.2'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 
+gem 'concurrent-ruby', require: 'concurrent'
 gem 'font-awesome-sass', '~> 4.7.0'
+gem 'mechanize'
 
 group :production do
   gem 'pg', '~> 0.18'
@@ -21,21 +23,27 @@ group :production do
 end
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.6'
   gem 'capybara'
+  gem 'jasmine', '~> 2.8'
+  gem 'rails-controller-testing'
+
   gem 'simplecov', require: false
   gem 'coveralls', require: false
-  gem 'jasmine', '~> 2.8'
-  gem 'rspec-rails', '~> 3.6'
-  gem 'rails-controller-testing'
+
+  gem 'better_errors' # do NOT put in prod (or other internet-facing envs)
+  gem 'binding_of_caller'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0' # <%= console %>
-  gem 'pry'
+  gem 'web-console', '>= 3.3.0' # <%= console %> — not compatibly with TEST env
 end
 
 group :test do
