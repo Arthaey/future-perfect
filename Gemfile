@@ -14,6 +14,7 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 
 gem 'concurrent-ruby', require: 'concurrent'
+  gem 'fakeweb', '~> 1.3'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'mechanize'
 
@@ -27,7 +28,6 @@ group :development, :test do
   gem 'capybara'
   gem 'jasmine', '~> 2.8'
   gem 'rails-controller-testing'
-  gem 'fakeweb', '~> 1.3'
 
   gem 'simplecov', require: false
   gem 'coveralls', require: false
