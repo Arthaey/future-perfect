@@ -36,5 +36,6 @@ module FuturePerfect
     FakeWeb.allow_net_connect = %r(https://coveralls.io)
     fake_http_response(%r(https://www.goodreads.com/), "goodreads.html")
     fake_http_response(%r(https://www.amazon.com/), "amazon.html")
+    fake_http_response(%r(https://twitter.com/), "twitter.html")
   end
 end
