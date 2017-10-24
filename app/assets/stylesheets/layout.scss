@@ -60,18 +60,33 @@ main {
   flex-grow: 1;
 }
 
+section {
+  margin-bottom: $breathing-room;
+}
+
+h1, h2 {
+  margin-top: $breathing-room * 2;
+  margin-bottom: $breathing-room;
+}
+
 .heading-with-action {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.sidebar {
-  background-color: lighten($primary-color, 55%);
-  border: 2px solid $primary-color;;
+@mixin box($base-color: $primary-color, $lighten-percent: 55%) {
+  background-color: lighten($base-color, $lighten-percent);
+  border: 2px solid $base-color;;
   border-radius: 1rem;
+  padding-top: $breathing-room;
+  padding-bottom: $breathing-room;
+}
+
+.sidebar {
+  @include box;
   margin-left: $breathing-room * 2;
-  min-width: $item-narrow-width;
+  width: $item-narrow-width;
 
   h2 {
     @extend .heading-with-action;
@@ -83,7 +98,6 @@ main {
   }
 }
 
-h1, h2 {
-  margin-top: $breathing-room * 2;
-  margin-bottom: $breathing-room;
+.action-box {
+  @include box($action-color, 35%);
 }
