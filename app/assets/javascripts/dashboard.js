@@ -1,22 +1,22 @@
 function togglePomodoro(e) {
   var pomodoro = this;
-  var wasCompleted = pomodoro.classList.contains("completed");
-  var wasActive = pomodoro.classList.contains("active");
+  var wasStopped = pomodoro.classList.contains("stopped");
+  var wasStarted = pomodoro.classList.contains("started");
 
-  // unstarted -> active -> completed -> ...
-  if (wasCompleted) {
-    pomodoro.classList.replace("completed", "unstarted");
+  // unstarted -> started -> stopped -> ...
+  if (wasStopped) {
+    pomodoro.classList.replace("stopped", "unstarted");
   }
-  else if (wasActive) {
-    pomodoro.classList.replace("active", "completed");
+  else if (wasStarted) {
+    pomodoro.classList.replace("started", "stopped");
   }
   else {
-    pomodoro.classList.replace("unstarted", "active");
+    pomodoro.classList.replace("unstarted", "started");
   }
 }
 
 function init() {
-  var pomodoros = document.querySelectorAll(".pomodoro:not(.completed)");
+  var pomodoros = document.querySelectorAll(".pomodoro:not(.stopped)");
   pomodoros.forEach(function(pomodoro) {
     pomodoro.addEventListener("click", togglePomodoro);
   });

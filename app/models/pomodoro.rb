@@ -17,13 +17,25 @@ class Pomodoro
   end
 
   def start
-    @state = :active
+    @state = :started
     self
   end
 
-  def finish
-    @state = :completed
+  def stop
+    @state = :stopped
     self
+  end
+
+  def unstarted?
+    @state == :unstarted
+  end
+
+  def started?
+    @state == :started
+  end
+
+  def stopped?
+    @state == :stopped
   end
 
   def self.start(*items)
@@ -31,9 +43,9 @@ class Pomodoro
     pomodoro.start()
   end
 
-  def self.done(*items, **attrs)
+  def self.stop(*items, **attrs)
     pomodoro = Pomodoro.new(*items)
     pomodoro.duration = attrs[:in]
-    pomodoro.finish()
+    pomodoro.stop()
   end
 end

@@ -22,7 +22,7 @@
     color: $action-color;
   }
 
-  &:active {
+  &:started {
     // fiddled with color picked to match $action-color to "inverted" icon
     filter: invert(100%) hue-rotate(180deg) brightness(260%) saturate(95%);
   }

@@ -65,7 +65,7 @@ $pomodoro-img-size: 3rem;
     }
   }
 
-  &.active {
+  &.started {
     img {
       filter: $outline-filter;
     }
@@ -81,7 +81,7 @@ $pomodoro-img-size: 3rem;
     }
   }
 
-  &.completed {
+  &.stopped {
     img {
       opacity: 0.5;
     }
