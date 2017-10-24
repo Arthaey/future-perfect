@@ -3,5 +3,4 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
   get 'timeline', to: 'dashboard#timeline'
-  get 'styleguide', to: 'dashboard#styleguide'
 end

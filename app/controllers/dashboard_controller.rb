@@ -4,7 +4,4 @@ class DashboardController < ApplicationController
 
   def timeline
   end
-
-  def styleguide
-  end
 end

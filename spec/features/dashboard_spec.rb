@@ -8,9 +8,4 @@ RSpec.describe "the dashboard" do
     visit "/timeline"
     expect(page).to have_css("nav .current", text: "Past")
   end
-
-  it "shows the styleguide" do
-    visit "/styleguide"
-    expect(page).to have_css("h1", text: "Styleguide")
-  end
 end
