@@ -1,12 +1,9 @@
+<%- title = content_for(:title) ? yield(:title) : "Future Perfect" %>
+
 <!DOCTYPE html>
 <html>
   <head>
-    <%- if content_for(:title) %>
-      <title><%= yield(:title) %> — Future Perfect</title>
-    <%- else %>
-      <title>Future Perfect</title>
-    <%- end %>
-
+    <title><%= title %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -14,10 +11,6 @@
 
   <body>
     <header>
-      <%- if content_for(:title) %>
-      <h1><%= yield(:title) %></h2>
-      <%- end %>
-
       <nav>
         <ul>
           <%= render partial: "nav_link", locals: { text: "Past", paths: [timeline_path] } %>
