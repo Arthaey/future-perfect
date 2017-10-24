@@ -5,6 +5,11 @@ rvm:
 services:
   - postgresql
 
+addons:
+  sauce_connect:
+    username: "arthaey"
+    access_key: "${SAUCE_LABS_TOKEN}"
+
 before_script:
   - psql -c 'CREATE DATABASE "future-perfect";' -U postgres
   - psql -c "CREATE USER \"future-perfect\" WITH PASSWORD '${DATABASE_PASSWORD}';" -U postgres
