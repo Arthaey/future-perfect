@@ -22,7 +22,7 @@ end
 
 <h3>Soon</h3>
 <section class="pomodoros-and-items">
-  <ol class="pomodoros">
+  <ol class="pomodoros drag-drop-zone">
     <%- @soon.each do |pomodoro| %>
     <%= render partial: "pomodoro", object: pomodoro %>
     <%- end %>
@@ -39,7 +39,7 @@ end
 
 <h3>Now!</h3>
 <section class="pomodoros-and-items action-box">
-  <ol class="pomodoros">
+  <ol class="pomodoros drag-drop-zone">
     <%- @now.each do |pomodoro| %>
     <%= render partial: "pomodoro", object: pomodoro %>
     <%- end %>
@@ -56,7 +56,7 @@ end
 
 <h3>Done</h3>
 <section class="pomodoros-and-items">
-  <ol class="pomodoros">
+  <ol class="pomodoros drag-drop-zone">
     <%- @done.each do |pomodoro| %>
     <%= render partial: "pomodoro", object: pomodoro %>
     <%- end %>

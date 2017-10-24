@@ -53,6 +53,10 @@ button, .button {
   background-color: lighten($primary-color, 55%);
 }
 
+.drag-hover {
+  background-color: $action-color;
+}
+
 %spin {
   animation-name: spin;
   animation-duration: 75s;
