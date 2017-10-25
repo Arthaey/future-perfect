@@ -25,6 +25,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-html-matchers'
   gem 'capybara'
   gem 'jasmine', '~> 2.8'
   gem 'rails-controller-testing'

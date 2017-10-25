@@ -33,11 +33,11 @@ class MetadataSource
 
     tweet = page.at(".tweet")
     text = tweet.at(".tweet-text").children.first.text
-    user = tweet.attributes["data-screen-name"].value
+    username = tweet.attributes["data-screen-name"].value
 
     {
       text: text,
-      user: user,
+      username: username,
     }
   end
 

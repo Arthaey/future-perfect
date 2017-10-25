@@ -1,0 +1,15 @@
+.tweet {
+  background-color: white;
+  border: 1px solid $gray;
+  border-radius: 0.75rem;
+  padding: $breathing-room;
+
+  .username, .text, .source {
+    display: block;
+  }
+
+  .text {
+    margin-top: $breathing-room;
+    margin-bottom: $breathing-room;
+  }
+}

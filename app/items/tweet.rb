@@ -1,7 +1,7 @@
 class Tweet < Item
   include ActionView::Helpers::UrlHelper
 
-  attr_accessor :text, :user
+  attr_accessor :text, :username
   attr_accessor :source_url
 
   def initialize(description = "", params = {})
@@ -16,7 +16,7 @@ class Tweet < Item
       metadata = MetadataSource.for(@source_url)
       if metadata
         @text = metadata[:text]
-        @user = metadata[:user]
+        @username = metadata[:username]
       end
     else
       @text = description
@@ -26,19 +26,8 @@ class Tweet < Item
   end
 
   def display
-    link_to("tweet", description)
-  end
-
-  def display
-    if @text
-      str = "“#{@text}”"
-      str = "@#{@user}: #{str}" unless @user.blank?
-      unless @source_url.blank?
-        str << " ["
-        str << link_to("source", @source_url.to_s)
-        str << "]"
-      end
-      str.html_safe
+    if @text && @source_url
+      ApplicationController.render(partial: "items/tweet", object: self)
     elsif @source_url
       link_to(@source_url.to_s, @source_url.to_s)
     else

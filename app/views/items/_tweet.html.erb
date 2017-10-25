@@ -1,0 +1,11 @@
+<div class="tweet">
+  <%- unless tweet.username.blank? %>
+  <span class="username">@<%= tweet.username %></span>
+  <%- end %>
+  <%- unless tweet.text.blank? %>
+  <span class="text"><%= tweet.text %></span>
+  <%- end %>
+  <%- unless tweet.source_url.blank? %>
+  <span class="source">[<a href="<%= tweet.source_url %>">source</a>]</span>
+  <%- end %>
+</div>

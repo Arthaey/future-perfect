@@ -32,6 +32,8 @@ require 'capybara/rails'
 #ActiveRecord::Migration.maintain_test_schema! # WAS HELLLLLLLLA SLOW! :(
 
 RSpec.configure do |config|
+  config.include RSpecHtmlMatchers
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
