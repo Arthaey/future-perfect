@@ -27,11 +27,6 @@
   .description {
     display: inline-block;
     width: 100%;
-
-    &[contenteditable='true'] {
-      cursor: pointer;
-      background-color: $action-light-color;
-    }
   }
 
   .controls {
@@ -45,6 +40,10 @@
       left: unset;
       right: 0;
     }
+  }
+
+  [contenteditable='false'] + .controls {
+    display: none;
   }
 }
 
