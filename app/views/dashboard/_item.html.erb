@@ -1,7 +1,15 @@
 <div class="event <%= item.type %>">
   <%= semantic_icon(item.icon) %>
-  <span class="description"><%= item.display %></span>
+
+  <span class="description" contenteditable="<%= item.editable %>">
+    <%= item.display %>
+  </span>
+
   <%- if item.relative_time %>
   <span class="timestamp"><%= item.relative_time %></span>
+  <%- end %>
+
+  <%- if item.editable %>
+  <div class="controls"><%= interactive_icon(Icon.save) %></div>
   <%- end %>
 </div>

@@ -15,8 +15,7 @@ function addId(element) {
   element.id = uuidv4();
 }
 
-function togglePomodoro(ev) {
-  var pomodoro = this;
+function progressPomodoroState(pomodoro) {
   var wasStopped = pomodoro.classList.contains("stopped");
   var wasStarted = pomodoro.classList.contains("started");
 
@@ -40,8 +39,10 @@ function dragPomodoro(ev) {
 function dropPomodoro(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
+  var pomodoro = document.getElementById(data);
   ev.target.classList.remove("drag-hover");
-  ev.target.appendChild(document.getElementById(data));
+  ev.target.appendChild(pomodoro);
+  progressPomodoroState(pomodoro);
 }
 
 function highlightDragDropZone(ev) {
@@ -55,13 +56,32 @@ function unhighlightDragDropZone(ev) {
   ev.target.classList.remove("drag-hover");
 }
 
-function init() {
-	/*
-  document.querySelectorAll(".pomodoro:not(.stopped)").forEach(function(pomodoro) {
-    pomodoro.addEventListener("click", togglePomodoro);
-  });
-  */
+function addItem(ev) {
+  var addIcon = ev.target;
+  var elementWithAddToId = addIcon.closest("[data-add-to]");
+  var addTo = document.getElementById(elementWithAddToId.dataset.addTo);
+  var addedElement = addTo.querySelector(".hidden");
 
+  var nextToAdd = addedElement.cloneNode(true);
+  addedElement.parentNode.appendChild(nextToAdd);
+  initSaveHandlers(nextToAdd);
+
+  addedElement.classList.remove("hidden");
+}
+
+function saveItem(ev) {
+  var item = ev.target.closest(".event");
+  var description = item.querySelector("[contenteditable]");
+  description.contentEditable = false;
+}
+
+function initSaveHandlers(root) {
+  root.querySelectorAll("[aria-label='save']").forEach(function(save) {
+    save.addEventListener("click", saveItem);
+  });
+}
+
+function init() {
   document.querySelectorAll(".pomodoro").forEach(function(pomodoro) {
     addId(pomodoro);
     pomodoro.addEventListener("dragstart", dragPomodoro);
@@ -73,6 +93,13 @@ function init() {
     zone.addEventListener("dragexit", unhighlightDragDropZone);
     zone.addEventListener("dragleave", unhighlightDragDropZone);
   });
+
+  var adds = document.querySelectorAll(".interactive-icon[aria-label='add']");
+  adds.forEach(function(add) {
+    add.addEventListener("click", addItem);
+  });
+
+  initSaveHandlers(document);
 }
 
 document.addEventListener("DOMContentLoaded", init);

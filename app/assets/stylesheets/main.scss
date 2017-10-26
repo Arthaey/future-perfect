@@ -45,8 +45,12 @@ button, .button {
   }
 }
 
-.screenreader-only {
+.hidden {
   display: none;
+}
+
+.screenreader-only {
+  @extend .hidden;
 }
 
 .zebra > :nth-child(odd) {

@@ -22,16 +22,19 @@ fake_today = "2017-10-14"
 
 <ol class="timeline-horizontal zebra">
   <%- @weekdays.each do |weekday| %>
-  <li class="<%= @today_weekday == weekday ? 'today' : '' %>">
+  <li class="<%= @today_weekday == weekday ? "today" : "" %>">
     <h3>
       <span><%= weekday %></span>
-      <%= interactive_icon(Icon.add) %>
+      <%= interactive_icon(Icon.add, "data-add-to": "week-items-#{weekday}") %>
     </h3>
 
-    <ol class="events">
+    <ol class="events" id=<%= "week-items-#{weekday}" %>>
       <%- @present_by_weekday[weekday].each do |event| %>
         <li><%= render partial: "item", object: event %></li>
       <%- end %>
+      <li class="hidden">
+        <%= render partial: "item", object: Item.editable %>
+      </li>
     </ol>
   </li>
   <%- end %>

@@ -1,21 +1,22 @@
 module ApplicationHelper
 
-  def semantic_icon(icon)
-    return icon_tag(icon, false)
+  def semantic_icon(icon, options = {})
+    return icon_tag(icon, false, options)
   end
 
-  def interactive_icon(icon)
-    return icon_tag(icon, true)
+  def interactive_icon(icon, options = {})
+    return icon_tag(icon, true, options)
   end
 
   private
 
-  def icon_tag(icon, is_interactive)
+  def icon_tag(icon, is_interactive, options = {})
     wrapper_options = {
       class: (icon.fa_bg_name ? "icon-with-bg" : "icon-without-bg")
     }
     wrapper_options[:class] += " interactive-icon" if is_interactive
     wrapper_options[:aria] = { label: icon.meaning } if is_interactive
+    wrapper_options.merge!(options)
 
     meaning_tag = nil
     if !is_interactive

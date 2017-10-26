@@ -4,6 +4,7 @@ class Item
 
   attr_accessor :description
   attr_accessor :due_at, :completed_at
+  attr_accessor :editable
 
   def initialize(description = "", params = {})
     @description = description
@@ -54,5 +55,11 @@ class Item
       timestamp.strftime("%F") # 1999-01-01
       #timestamp.strftime("%a") # Sat
     end
+  end
+
+  def self.editable
+    item = self.new
+    item.editable = true
+    item
   end
 end
