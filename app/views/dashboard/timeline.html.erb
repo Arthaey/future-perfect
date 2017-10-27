@@ -1,7 +1,7 @@
 <%-
 # HARDCODED PROTOTYPE DATA #####################################################
 
-@past = [
+past = [
   Task.new("trimmed plants in the front yard", when: "2017-10-14"),
   Task.new("entered receipts into YNAB", when: "2017-10-13"),
   Task.new("made car care checklist for Acura", when: "2017-10-15"),
@@ -10,15 +10,20 @@
   Book.new("https://www.amazon.com/dp/1400079985/", when: "2017-10-10"),
   Item.new("generic drawing", image: "drawing.jpg"),
   Ocr.new("OCR would be cool", image: "ocr.jpg"),
+  Appointment.new("an appointment", when: "2017-09-23"),
 ]
-@past.sort_by! { |item| item.timestamp || DateTime.now }
+past.sort_by! { |item| item.timestamp || DateTime.now }.reverse
+@past_by_date_range = past.group_by(&:relative_time)
 
 # END HARDCODED DATA ###########################################################
 -%>
 
 <h2>Timeline</h2>
-<ol class="events timeline-vertical">
-  <%- @past.each do |event| %>
+<%- @past_by_date_range.each do |date_range, events| %>
+  <h3><%= date_range %></h3>
+  <ol class="events timeline-vertical">
+  <%- events.each do |event| %>
     <li><%= render partial: "item", object: event %></li>
   <%- end %>
 </ol>
+<%- end %>

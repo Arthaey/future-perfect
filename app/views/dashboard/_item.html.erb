@@ -10,8 +10,8 @@
   <%= image_tag(item.image, attrs || {}) %>
   <%- end %>
 
-  <%- if item.relative_time %>
-  <span class="timestamp"><%= item.relative_time %></span>
+  <%- if item.time_or_date %>
+  <span class="timestamp"><%= item.time_or_date %></span>
   <%- end %>
 
   <%- if item.editable %>

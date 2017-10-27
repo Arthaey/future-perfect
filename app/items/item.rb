@@ -46,7 +46,7 @@ class Item
     timestamp ? timestamp.strftime("%a") : nil
   end
 
-  def relative_time
+  def time_or_date
     return nil unless timestamp
 
     today = Date.today
@@ -57,6 +57,31 @@ class Item
     else
       timestamp.strftime("%F") # 1999-01-01
       #timestamp.strftime("%a") # Sat
+    end
+  end
+
+  def relative_time
+    date = timestamp&.to_date || Date.today # TODO: better default?
+    today = Date.today
+    last_week = today.beginning_of_week - 1
+    last_month = today.beginning_of_month - 1
+
+    if today < date
+      "future"
+    elsif today == date
+      "today"
+    elsif (today - 1) == date
+      "yesterday"
+    elsif today.all_week.cover?(date)
+      "this week"
+    elsif last_week.all_week.cover?(date)
+      "last week"
+    elsif today.all_month.cover?(date)
+      "this month"
+    elsif last_month.all_month.cover?(date)
+      "last month"
+    else
+      date.strftime("%B %Y")
     end
   end
 
