@@ -100,6 +100,10 @@ function init() {
   });
 
   initSaveHandlers(document);
+
+  document.querySelectorAll("[data-lines]").forEach(function(element) {
+    element.style.height = (element.dataset.lines * 2) + "rem";
+  });
 }
 
 document.addEventListener("DOMContentLoaded", init);

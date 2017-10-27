@@ -5,6 +5,11 @@
     <%= item.display %>
   </span>
 
+  <%- if item.image %>
+  <%- attrs = { "data-lines": item.lines.count } if item.respond_to?(:lines) %>
+  <%= image_tag(item.image, attrs || {}) %>
+  <%- end %>
+
   <%- if item.relative_time %>
   <span class="timestamp"><%= item.relative_time %></span>
   <%- end %>

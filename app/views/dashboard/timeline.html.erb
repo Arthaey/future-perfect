@@ -8,8 +8,10 @@
   Tweet.new("https://twitter.com/arthaey/status/920298884219387905", when: "2017-10-17"),
   Book.new("https://www.goodreads.com/book/show/656", when: "2017-10-10"),
   Book.new("https://www.amazon.com/dp/1400079985/", when: "2017-10-10"),
+  Item.new("generic drawing", image: "drawing.jpg"),
+  Ocr.new("OCR would be cool", image: "ocr.jpg"),
 ]
-@past.sort_by! { |item| item.timestamp }
+@past.sort_by! { |item| item.timestamp || DateTime.now }
 
 # END HARDCODED DATA ###########################################################
 -%>

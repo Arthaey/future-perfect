@@ -1,9 +1,12 @@
 class Item
   include ActiveModel::Model
   extend ActiveModel::Naming
+  include ActionView::Helpers::UrlHelper
 
   attr_accessor :description
   attr_accessor :due_at, :completed_at
+  attr_accessor :image
+
   attr_accessor :editable
 
   def initialize(description = "", params = {})
