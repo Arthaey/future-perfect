@@ -22,7 +22,6 @@ script:
 deploy:
   provider: heroku
   api_key: $HEROKU_API_KEY
-  on: prototyping
   run:
     - "rake db:migrate"
   skip_cleanup: true # keep generated assets
