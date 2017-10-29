@@ -79,6 +79,10 @@
     top: 0;
     left: -($indent + $breathing-room / 2);
   }
+
+  .fa-circle {
+    left: 0.2rem; // why? :(
+  }
 }
 
 .timeline-horizontal {
