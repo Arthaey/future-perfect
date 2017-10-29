@@ -1,35 +1,31 @@
 <%-
 # HARDCODED PROTOTYPE DATA #####################################################
 
-budgetGoal = Goal.new("budget", GoalCategory[:money])
+#budgetGoal = Goal.new("budget", GoalCategory[:money])
 
-goal_tasks = [
-  GoalTask.new("enter receipts", budgetGoal),
+items = [
+  Task.new("enter receipts", category: GoalCategory[:money])
 ]
 
-@present_goal_tasks = goal_tasks
-@present_goal_tasks_by_category = @present_goal_tasks.group_by(&:category_name)
-@present_goal_tasks_by_category.default = []
+no_cat, has_cat = items.partition { |item| item.category.nil? }
+
+@items_by_category = {}
+@category_abbrevs = {}
+@category_classes = {}
+
+GoalCategory.each do |cat|
+  @items_by_category[cat] = []
+  @category_abbrevs[cat] = cat.abbrev
+  @category_classes[cat] = "cat-#{cat}"
+end
+@items_by_category.merge!(has_cat.group_by(&:category))
 
 # END HARDCODED DATA ###########################################################
 -%>
 
-<ol class="timeline-horizontal zebra">
-  <%- GoalCategory.each do |category| %>
-  <li>
-    <h3>
-      <span class=<%= "cat-#{category}" %>><%= category.abbrev %></span>
-      <%= interactive_icon(Icon.add) %>
-    </h3>
-
-    <ol class="events">
-      <%- @present_goal_tasks_by_category[category.name].each do |goal_task| %>
-      <li class="event <%= goal_task.category_name %>">
-        <%= semantic_icon(goal_task.icon, class: "cat-#{category}") %>
-        <span class="description"><%= goal_task.description %></span>
-      </li>
-      <%- end %>
-    </ol>
-  </li>
-  <%- end %>
-</ol>
+<%= render partial: "grouped_items", locals: {
+      grouped_items: @items_by_category,
+      group_names: @category_abbrevs,
+      group_classes: @category_classes,
+    }
+%>

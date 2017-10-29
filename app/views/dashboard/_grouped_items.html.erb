@@ -1,0 +1,35 @@
+<%-
+  required_locals = %i(grouped_items)
+  raise ArgumentError unless required_locals.all? { |req| local_assigns.key?(req) }
+
+  groups = grouped_items.keys
+  grouped_items.default = []
+
+  # optional locals
+  highlight_group ||= nil
+  group_names   ||= groups.each_with_object({}) { |g, hash| hash[g] = g }
+  group_classes ||= groups.each_with_object({}) { |g, hash| hash[g] = g }
+-%>
+
+<ol class="timeline-horizontal zebra">
+  <%- groups.each do |group| %>
+  <%- add_to_id = "items-#{group}" %>
+  <li class=<%= highlight_group == group ? "highlight" : "" %>>
+    <h3>
+      <span class=<%= group_classes[group] %>>
+        <%= group_names[group] %>
+      </span>
+      <%= interactive_icon(Icon.add, "data-add-to": add_to_id) %>
+    </h3>
+
+    <ol class="events" id=<%= add_to_id %>>
+      <%- grouped_items[group].each do |item| %>
+        <li><%= render partial: "item", object: item %></li>
+      <%- end %>
+      <li class="hidden">
+        <%= render partial: "item", object: Item.editable %>
+      </li>
+    </ol>
+  </li>
+  <%- end %>
+</ol>
