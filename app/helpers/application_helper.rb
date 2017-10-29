@@ -15,6 +15,7 @@ module ApplicationHelper
       class: (icon.fa_bg_name ? "icon-with-bg" : "icon-without-bg")
     }
     wrapper_options[:class] += " interactive-icon" if is_interactive
+    wrapper_options[:class] += " #{options.delete(:class)}" if options[:class]
     wrapper_options[:aria] = { label: icon.meaning } if is_interactive
     wrapper_options.merge!(options)
 

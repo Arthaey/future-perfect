@@ -1,5 +1,5 @@
 <div class="event <%= item.type %>">
-  <%= semantic_icon(item.icon) %>
+  <%= semantic_icon(item.icon, class: "cat-#{item&.category}") %>
 
   <span class="description" contenteditable="<%= item.editable %>">
     <%= item.display %>

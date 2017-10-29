@@ -34,4 +34,8 @@ class Tweet < Item
       super
     end
   end
+
+  def default_category
+    GoalCategory[:relaxing]
+  end
 end

@@ -4,8 +4,11 @@ class Item
   include ActionView::Helpers::UrlHelper
 
   attr_accessor :description
-  attr_accessor :due_at, :completed_at
   attr_accessor :image
+  attr_accessor :category
+
+  attr_accessor :due_at
+  attr_accessor :completed_at
 
   attr_accessor :editable
 
@@ -24,13 +27,27 @@ class Item
     params.each { |key, value| send "#{key}=", value }
   end
 
-  # Subclasses should override this method to customize their appaearance.
+  ##############################################################################
+  # Subclasses should override these methods to customize their appaearance.
+  #
+
   def display
-    description || type
+    @description || type
   end
+
+  def default_category
+    nil
+  end
+
+  #
+  ##############################################################################
 
   def type
     model_name.name
+  end
+
+  def category
+    @category || default_category
   end
 
   def icon
@@ -38,8 +55,8 @@ class Item
   end
 
   def timestamp
-    return nil if completed_at.blank? && due_at.blank?
-    DateTime.parse(completed_at || due_at)
+    return nil if @completed_at.blank? && @due_at.blank?
+    DateTime.parse(@completed_at || @due_at)
   end
 
   def weekday
