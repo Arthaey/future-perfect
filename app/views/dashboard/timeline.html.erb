@@ -12,18 +12,19 @@ past = [
   Ocr.new("OCR would be cool", image: "ocr.jpg"),
   Appointment.new("an appointment", when: "2017-09-23"),
 ]
-past.sort_by! { |item| item.timestamp || DateTime.now }.reverse
-@past_by_date_range = past.group_by(&:relative_time)
+undated, dated = past.partition { |item| item.timestamp.nil? }
+dated = dated.sort_by!(&:timestamp).reverse.group_by(&:relative_time)
+@items_with_dates = dated.merge({ "undated": undated })
 
 # END HARDCODED DATA ###########################################################
 -%>
 
 <h2>Timeline</h2>
-<%- @past_by_date_range.each do |date_range, events| %>
+<%- @items_with_dates.each do |date_range, items| %>
   <h3><%= date_range %></h3>
   <ol class="events timeline-vertical">
-  <%- events.each do |event| %>
-    <li><%= render partial: "item", object: event %></li>
+  <%- items.each do |item| %>
+    <li><%= render partial: "item", object: item %></li>
   <%- end %>
-</ol>
+  </ol>
 <%- end %>
