@@ -22,7 +22,7 @@
       <%= interactive_icon(Icon.add, "data-add-to": add_to_id) %>
     </h3>
 
-    <ol class="events" id=<%= add_to_id %>>
+    <ol class="items" id=<%= add_to_id %>>
       <%- grouped_items[group].each do |item| %>
         <li><%= render partial: "item", object: item %></li>
       <%- end %>

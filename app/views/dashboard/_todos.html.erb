@@ -10,8 +10,8 @@
   <span>TODOs</span>
   <%= interactive_icon(Icon.add) %>
 </h2>
-<ol class="events">
-  <%- @todos.each do |event| %>
-    <li><%= render partial: "item", object: event %></li>
+<ol class="items">
+  <%- @todos.each do |item| %>
+    <li><%= render partial: "item", object: item %></li>
   <%- end %>
 </ol>

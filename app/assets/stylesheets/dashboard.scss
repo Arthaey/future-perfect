@@ -12,7 +12,7 @@
   }
 }
 
-.event {
+.item {
   line-height: 1rem;
   min-height: 1rem;
   padding-left: $indent;
@@ -52,7 +52,7 @@
   }
 }
 
-.events {
+.items {
   list-style: none;
   padding: 0;
 
@@ -62,7 +62,7 @@
 }
 
 .timeline-vertical {
-  @extend .events;
+  @extend .items;
   margin-left: $breathing-room;
 
   li {
@@ -86,7 +86,7 @@
 }
 
 .timeline-horizontal {
-  @extend .events;
+  @extend .items;
   display: flex;
 
   > li {
@@ -100,9 +100,6 @@
   h3 {
     border-bottom: 1px solid;
     @extend .heading-with-action;
-  }
-
-  .event {
   }
 }
 

@@ -22,7 +22,7 @@ dated = dated.sort_by!(&:timestamp).reverse.group_by(&:relative_time)
 <h2>Timeline</h2>
 <%- @items_with_dates.each do |date_range, items| %>
   <h3><%= date_range %></h3>
-  <ol class="events timeline-vertical">
+  <ol class="items timeline-vertical">
   <%- items.each do |item| %>
     <li><%= render partial: "item", object: item %></li>
   <%- end %>

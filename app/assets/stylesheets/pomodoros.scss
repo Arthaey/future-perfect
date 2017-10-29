@@ -49,7 +49,7 @@ $pomodoro-img-size: 3rem;
     height: $pomodoro-img-size;
   }
 
-  .event {
+  .item {
     max-width: $item-narrow-width;
     margin-right: $breathing-room;
   }
@@ -76,7 +76,7 @@ $pomodoro-img-size: 3rem;
       display: block;
     }
 
-    .event .description {
+    .item .description {
       color: $primary-color;
     }
   }

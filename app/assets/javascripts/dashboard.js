@@ -70,7 +70,7 @@ function addItem(ev) {
 }
 
 function saveItem(ev) {
-  var item = ev.target.closest(".event");
+  var item = ev.target.closest(".item");
   var description = item.querySelector("[contenteditable]");
   description.contentEditable = false;
 }

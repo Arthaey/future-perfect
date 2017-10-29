@@ -28,7 +28,7 @@ end
     <%- end %>
   </ol>
 
-  <ol class="events">
+  <ol class="items">
     <%- @soon.each do |pomodoro| %>
       <%- pomodoro.items.each do |item| %>
       <li><%= render partial: "item", object: item %></li>
@@ -45,7 +45,7 @@ end
     <%- end %>
   </ol>
 
-  <ol class="events">
+  <ol class="items">
     <%- @now.each do |pomodoro| %>
       <%- pomodoro.items.each do |item| %>
       <li><%= render partial: "item", object: item %></li>
@@ -62,7 +62,7 @@ end
     <%- end %>
   </ol>
 
-  <ol class="events">
+  <ol class="items">
     <%- @done.each do |pomodoro| %>
       <%- pomodoro.items.each do |item| %>
       <li><%= render partial: "item", object: item %></li>
