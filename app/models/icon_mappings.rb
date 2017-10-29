@@ -1,11 +1,11 @@
 ICON_MAPPINGS = {
   add:            Icon.new("add", "plus-circle", "circle"),
   appointment:    Icon.new("appointment", "calendar", "square"),
-  book:           Icon.new("book"),
+  book:           Icon.new("book", "book", "square"),
   circle:         Icon.new("item", "circle"),
   task:           Icon.new("task", "check-square-o", "square"),
   fun:            Icon.new("fun", "smile-o", "circle"),
-  misc:           Icon.new("miscellaneous", "asterisk"),
+  misc:           Icon.new("miscellaneous", "asterisk", "circle"),
   save:           Icon.new("save", "save", "square"),
   timer:          Icon.new("timer", "hourglass"),
   tweet:          Icon.new("Twitter", "twitter", "circle"),
