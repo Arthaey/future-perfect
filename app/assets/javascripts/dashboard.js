@@ -8,7 +8,7 @@ function uuidv4() {
 
 function addId(element) {
   if (element.id) {
-    console.error("Element already has an ID: " + element);
+    console.warn("Element already has an ID: " + element);
     return;
   }
 
@@ -81,6 +81,87 @@ function initSaveHandlers(root) {
   });
 }
 
+var g_categorySelectorWidth = 150;
+var g_categorySelector;
+var g_categories = [
+  { name: "Marriage",   abbrev: "Ma",   color: "#f44336" },
+  { name: "Career",     abbrev: "Ca",   color: "#ff9800" },
+  { name: "Health",     abbrev: "He",   color: "#ffeb3b" },
+  { name: "Adulting",   abbrev: "Adlt", color: "#afb42b" },
+  { name: "Money",      abbrev: "Mo",   color: "#2e7d32" },
+  { name: "Relaxing",   abbrev: "Re",   color: "#03a9f4" },
+  { name: "Language",   abbrev: "La",   color: "#1565c0" },
+  { name: "Creativity", abbrev: "Cr",   color: "#673ab7" },
+  { name: "Friends",    abbrev: "Fr",   color: "#795548" },
+  { name: "Adventure",  abbrev: "Adv",  color: "#212121" },
+];
+
+function initCategorySelector() {
+  var names   = g_categories.map(function(cat) { return cat.name });
+  var abbrevs = g_categories.map(function(cat) { return cat.abbrev });
+  var colors  = g_categories.map(function(cat) { return cat.color });
+
+  g_categorySelector = new wheelnav(
+      "divWheelnav",
+      null,
+      g_categorySelectorWidth,
+      g_categorySelectorWidth
+  );
+
+  g_categorySelector.slicePathFunction = slicePath().DonutSlice;
+  g_categorySelector.clickModeRotate = false;
+  g_categorySelector.navAngle = -90;
+  g_categorySelector.clockwise = false;
+  g_categorySelector.colors = colors;
+  g_categorySelector.titleFont = "bold 16px sans-serif";
+  g_categorySelector.setTooltips(names);
+  g_categorySelector.initWheel(abbrevs);
+
+  g_categorySelector.navItems.forEach(function(navItem) {
+    navItem.navigateFunction = function() { setCategory(navItem) };
+  });
+
+  var titleAttr = g_categorySelector.navItems[9].titleAttr;
+  titleAttr["fill"] = "#aaa";
+  g_categorySelector.navItems[9].titleAttr = titleAttr;
+
+  g_categorySelector.createWheel();
+}
+
+function setCategory(navItem) {
+  var cat = g_categories[navItem.wheelItemIndex];
+  var menu = document.getElementById("divWheelnav");
+  var item = document.getElementById(menu.dataset.itemId);
+  var icon = item.querySelector("[class*='cat-']");
+
+  var classes = icon.classList;
+  classes.forEach(function(className) {
+    if (className.startsWith("cat-")) {
+      icon.classList.remove(className);
+    }
+  });
+  icon.classList.add("cat-" + cat.name);
+
+  menu.classList.add("hidden");
+}
+
+function showCategorySelector(ev) {
+  var icon = ev.target;
+  var item = icon.closest(".item");
+  var menu = document.getElementById("divWheelnav");
+
+  var halfMenuWidth = g_categorySelectorWidth / 2;
+  var magicOffset = 7; // :(
+  var left = item.offsetLeft - halfMenuWidth + magicOffset;
+  var top = item.offsetTop - halfMenuWidth + magicOffset;
+
+  menu.dataset.itemId = item.id;
+  menu.style.left = left + "px";
+  menu.style.top = top + "px";
+  menu.classList.remove("hidden");
+  g_categorySelector.refreshWheel();
+}
+
 function init() {
   document.querySelectorAll(".pomodoro").forEach(function(pomodoro) {
     addId(pomodoro);
@@ -100,6 +181,13 @@ function init() {
   });
 
   initSaveHandlers(document);
+  initCategorySelector();
+
+  var catIcons = document.querySelectorAll(".item [class*='cat-']");
+  catIcons.forEach(function(catIcon) {
+    addId(catIcon.closest(".item"));
+    catIcon.addEventListener("click", showCategorySelector);
+  });
 
   document.querySelectorAll("[data-lines]").forEach(function(element) {
     element.style.height = (element.dataset.lines * 2) + "rem";

@@ -7,6 +7,8 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script src="https://cdn.jsdelivr.net/npm/wheelnav@1.7.1/js/dist/raphael.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wheelnav@1.7.1/js/dist/wheelnav.min.js"></script>
   </head>
 
   <body>
@@ -22,6 +24,7 @@
     <main role="main">
       <section class="main-content">
         <%= yield %>
+        <div id="divWheelnav" class="hidden"></div>
       </section>
 
       <%- if content_for?(:sidebar) %>

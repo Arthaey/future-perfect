@@ -107,3 +107,10 @@
   border: 2px solid $accent-color;
 }
 
+#divWheelnav {
+  $size: 300px;
+  position: absolute;
+  left: 500px;
+  top: 500px;
+  z-index: 1;
+}
