@@ -1,26 +1,5 @@
-<%-
-# HARDCODED PROTOTYPE DATA #####################################################
-
-past = [
-  Task.new("trimmed plants in the front yard", when: "2017-10-14"),
-  Task.new("entered receipts into YNAB", when: "2017-10-13"),
-  Task.new("made car care checklist for Acura", when: "2017-10-15"),
-  Tweet.new("https://twitter.com/arthaey/status/920298884219387905", when: "2017-10-17"),
-  Book.new("https://www.goodreads.com/book/show/656", when: "2017-10-10"),
-  Book.new("https://www.amazon.com/dp/1400079985/", when: "2017-10-10"),
-  Item.new("generic drawing", image: "drawing.jpg"),
-  Ocr.new("OCR would be cool", image: "ocr.jpg"),
-  Appointment.new("an appointment", when: "2017-09-23"),
-]
-undated, dated = past.partition { |item| item.timestamp.nil? }
-dated = dated.sort_by!(&:timestamp).reverse.group_by(&:relative_time)
-@items_with_dates = dated.merge({ "undated": undated })
-
-# END HARDCODED DATA ###########################################################
--%>
-
 <h2>Timeline</h2>
-<%- @items_with_dates.each do |date_range, items| %>
+<%- @items_by_date.each do |date_range, items| %>
   <h3><%= date_range %></h3>
   <ol class="items timeline-vertical">
   <%- items.each do |item| %>

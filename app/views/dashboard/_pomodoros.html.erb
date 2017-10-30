@@ -1,35 +1,13 @@
-<%-
-# HARDCODED PROTOTYPE DATA #####################################################
-
-book = Book.new("https://www.goodreads.com/book/show/656", when: "2017-10-10")
-
-minimum_pomodoros = 8 # arbitrary target
-@pomodoros = [
-  Pomodoro.stop(book, in: 20.minutes),
-  Pomodoro.start(Fun.new("went to a new cafe with some folks")),
-  Pomodoro.new(Appointment.new("Foo"), Task.new("Bar"), Task.new("Qux")),
-]
-while @pomodoros.count < minimum_pomodoros
-  @pomodoros.push(Pomodoro.new())
-end
-
-@soon = @pomodoros.select(&:unstarted?)
-@now  = @pomodoros.select(&:started?)
-@done = @pomodoros.select(&:stopped?)
-
-# END HARDCODED DATA ###########################################################
--%>
-
 <h3>Soon</h3>
 <section class="pomodoros-and-items">
   <ol class="pomodoros drag-drop-zone">
-    <%- @soon.each do |pomodoro| %>
+    <%- @pomodoro_items[:soon].each do |pomodoro| %>
     <%= render partial: "pomodoro", object: pomodoro %>
     <%- end %>
   </ol>
 
   <ol class="items">
-    <%- @soon.each do |pomodoro| %>
+    <%- @pomodoro_items[:soon].each do |pomodoro| %>
       <%- pomodoro.items.each do |item| %>
       <li><%= render partial: "item", object: item %></li>
       <%- end %>
@@ -40,13 +18,13 @@ end
 <h3>Now!</h3>
 <section class="pomodoros-and-items action-box">
   <ol class="pomodoros drag-drop-zone">
-    <%- @now.each do |pomodoro| %>
+    <%- @pomodoro_items[:now].each do |pomodoro| %>
     <%= render partial: "pomodoro", object: pomodoro %>
     <%- end %>
   </ol>
 
   <ol class="items">
-    <%- @now.each do |pomodoro| %>
+    <%- @pomodoro_items[:now].each do |pomodoro| %>
       <%- pomodoro.items.each do |item| %>
       <li><%= render partial: "item", object: item %></li>
       <%- end %>
@@ -57,13 +35,13 @@ end
 <h3>Done</h3>
 <section class="pomodoros-and-items">
   <ol class="pomodoros drag-drop-zone">
-    <%- @done.each do |pomodoro| %>
+    <%- @pomodoro_items[:done].each do |pomodoro| %>
     <%= render partial: "pomodoro", object: pomodoro %>
     <%- end %>
   </ol>
 
   <ol class="items">
-    <%- @done.each do |pomodoro| %>
+    <%- @pomodoro_items[:done].each do |pomodoro| %>
       <%- pomodoro.items.each do |item| %>
       <li><%= render partial: "item", object: item %></li>
       <%- end %>
