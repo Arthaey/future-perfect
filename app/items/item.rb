@@ -14,6 +14,7 @@ class Item
 
   def initialize(description = "", params = {})
     @description = description
+    @editable = false
 
     when_str = params.delete(:when)
     if when_str
