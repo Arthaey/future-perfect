@@ -1,7 +1,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-.icon-with-bg, .icon-without-bg {
+.icon-with-bg {
   @extend .fa-stack;
 }
 
@@ -13,10 +13,6 @@
 .interactive-icon {
   color: $secondary-color;
   cursor: pointer;
-
-  &.icon-without-bg:hover {
-    color: $action-color;
-  }
 
   &:hover .icon-bg {
     color: $action-color;

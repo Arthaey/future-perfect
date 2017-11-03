@@ -92,7 +92,7 @@ h1, h2 {
     @extend .heading-with-action;
     margin-top: 0;
 
-    .icon-with-bg, .icon-without-bg {
+    .icon-with-bg {
       font-size: $medium-font;
     }
   }

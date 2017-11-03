@@ -17,7 +17,7 @@
   min-height: 1rem;
   padding-left: $indent;
 
-  .icon-with-bg, .icon-without-bg {
+  .icon-with-bg {
     display: inline;
     line-height: 1rem;
     width: $indent;
@@ -75,7 +75,7 @@
     margin-left: $breathing-room / 2;
   }
 
-  .icon-with-bg, .icon-without-bg {
+  .icon-with-bg {
     top: 0;
     left: -($indent + $breathing-room / 2);
   }
