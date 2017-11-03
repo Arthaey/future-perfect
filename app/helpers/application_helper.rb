@@ -25,13 +25,13 @@ module ApplicationHelper
     end
 
     icon_options = {
-      class: "icon fa-#{icon.fa_name}",
+      class: "icon",
       title: icon.meaning,
       aria: { hidden: true },
     }
     icon_tag = content_tag(:i, nil, icon_options) { meaning_tag }
 
-    background_icon_tag = content_tag(:i, nil, class: "icon-bg fa-lg fa-#{icon.fa_bg_name}")
+    background_icon_tag = content_tag(:i, nil, class: "icon-bg fa-lg")
 
     content_tag(:span, nil, wrapper_options) do
       if icon.fa_bg_name

@@ -36,3 +36,28 @@
 .fa-circle:not(.icon-bg) {
   font-size: $small-font;
 }
+
+@mixin icon($icon, $bg) {
+  .icon {
+    @extend .fa-#{$icon};
+  }
+
+  .icon-bg {
+    @extend .fa-#{$bg};
+  }
+}
+
+@mixin square-icon($icon) {
+  @include icon($icon, "square");
+}
+
+@mixin circle-icon($icon) {
+  @include icon($icon, "circle");
+}
+
+.type-Appointment { @include square-icon("calendar"); }
+.type-Book { @include square-icon("book"); }
+.type-Item { @include circle-icon("circle"); }
+.type-Task { @include square-icon("check-square-o"); }
+.type-Fun { @include circle-icon("smile-o"); }
+.type-Tweet { @include circle-icon("twitter"); }

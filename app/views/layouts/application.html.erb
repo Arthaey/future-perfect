@@ -24,7 +24,9 @@
     <main role="main">
       <section class="main-content">
         <%= yield %>
+
         <div id="category-menu" class="hidden"></div>
+        <div id="item-type-menu" class="hidden"></div>
       </section>
 
       <%- if content_for?(:sidebar) %>

@@ -1,4 +1,4 @@
-var Menu = function initMenu(id, size, labels, colors) {
+var Menu = function(id, size, labels, colors) {
   this.wheelNav = new wheelnav(id, null, size, size);
   this.element = document.getElementById(id);
   this.size = size;
@@ -20,19 +20,49 @@ var Menu = function initMenu(id, size, labels, colors) {
 };
 
 Menu.prototype.navigateFunction = function(navItem) {
+  console.group("Menu subclass should override navigateFunction.");
+  console.log(this);
   console.log(navItem);
+  console.groupEnd();
 };
 
-Menu.prototype.setTriggers = function(selector, func) {
+Menu.prototype.showMenu = function() {
+  console.group("Menu subclass should override showMenu.");
+  console.log(this);
+  console.groupEnd();
+};
+
+Menu.prototype.setTriggers = function(selector) {
+  var that = this;
   var elements = document.querySelectorAll(selector);
   elements.forEach(function(element) {
-    element.addEventListener("click", func);
+    element.addEventListener("click", that.showMenu.bind(that));
   });
 };
 
-Menu.prototype.setNavItemColor = function(index, color) {
-  var titleAttr = this.wheelNav.navItems[index].titleAttr;
-  titleAttr["fill"] = color;
-  this.wheelNav.navItems[index].titleAttr = titleAttr;
+Menu.prototype.setNavItemColor = function(color, index) {
+  this.setNavItemAttr("fill", color, index);
+};
+
+Menu.prototype.setNavItemFont = function(font, index) {
+  this.setNavItemAttr("font", font, index);
+};
+
+Menu.prototype.setNavItemAttr = function(attr, value, index) {
+  var navItems;
+  if (index) {
+    navItems = [ this.wheelNav.navItems[index] ];
+  } else {
+    navItems = this.wheelNav.navItems;
+  }
+
+  navItems.forEach(function(navItem) {
+    var updatedAttr = navItem.titleAttr;
+    updatedAttr[attr] = value;
+    navItem.titleAttr = updatedAttr;
+    navItem.titleHoverAttr = updatedAttr;
+    navItem.titleSelectedAttr = updatedAttr;
+  });
+
   this.wheelNav.refreshWheel();
 };

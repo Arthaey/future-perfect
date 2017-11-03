@@ -14,6 +14,7 @@
 
 //= require menu
 //= require categoryMenu
+//= require itemTypeMenu
 
 //= require pomodoro
 

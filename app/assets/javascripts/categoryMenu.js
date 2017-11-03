@@ -1,4 +1,4 @@
-var CategoryMenu = function initCategoryMenu() {
+var CategoryMenu = function() {
   Menu.call(
     this,
     "category-menu",
@@ -8,7 +8,7 @@ var CategoryMenu = function initCategoryMenu() {
   );
 
   this.setNavItemColor(9, "#aaa");
-  this.setTriggers(".item [class*='cat-']", this.showCategoryMenu.bind(this));
+  this.setTriggers(".item [class*='cat-']");
 };
 
 CategoryMenu.prototype = Object.create(Menu.prototype);
@@ -30,7 +30,7 @@ CategoryMenu.prototype.navigateFunction = function(navItem) {
   this.element.classList.add("hidden");
 }
 
-CategoryMenu.prototype.showCategoryMenu = function(ev) {
+CategoryMenu.prototype.showMenu = function(ev) {
   var icon = ev.target;
   var item = icon.closest(".item");
 
