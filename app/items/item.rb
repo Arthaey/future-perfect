@@ -52,7 +52,7 @@ class Item
   end
 
   def icon
-    Icon.for(type) || Icon.circle
+    type.downcase
   end
 
   def timestamp

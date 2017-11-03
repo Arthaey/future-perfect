@@ -1,5 +1,5 @@
 <div class="item">
-  <%= semantic_icon(item.icon, class: "type-#{item&.type} cat-#{item&.category}") %>
+  <%= semantic_icon(item.icon, class: "type-#{item.type} cat-#{item.category}") %>
 
   <span class="description" contenteditable="<%= item.editable %>">
     <%= item.display %>
@@ -15,6 +15,6 @@
   <%- end %>
 
   <%- if item.editable %>
-  <div class="controls"><%= interactive_icon(Icon.save) %></div>
+  <div class="controls"><%= interactive_icon("save") %></div>
   <%- end %>
 </div>
