@@ -14,7 +14,7 @@ var g_categories = [
 var CategoryMenu = function initCategoryMenu() {
   Menu.call(
     this,
-    "divWheelnav",
+    "category-menu",
     150,
     g_categories.map(function(cat) { return cat.abbrev }),
     g_categories.map(function(cat) { return cat.color })
