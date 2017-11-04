@@ -1,18 +1,7 @@
-<h2>Today</h2>
-<%= render partial: "pomodoros" %>
-
 <h2>This Week</h2>
 <%= render partial: "grouped_items", locals: {
       grouped_items: @items_by_weekday,
       highlight_group: @today_weekday,
-    }
-%>
-
-<h2>Beyond</h2>
-<%= render partial: "grouped_items", locals: {
-      grouped_items: @items_by_category,
-      group_names: @category_abbrevs,
-      group_classes: @category_classes,
     }
 %>
 

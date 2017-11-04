@@ -14,4 +14,19 @@ RSpec.describe DashboardController, type: :controller do
     end
   end
 
+  describe "GET #goals" do
+    it "returns http success" do
+      get :goals
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET #pomodoros" do
+    it "returns http success" do
+      get :pomodoros
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+
 end

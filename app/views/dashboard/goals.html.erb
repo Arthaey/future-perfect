@@ -1,0 +1,7 @@
+<h2>Goals</h2>
+<%= render partial: "grouped_items", locals: {
+      grouped_items: @items_by_category,
+      group_names: @category_abbrevs,
+      group_classes: @category_classes,
+    }
+%>
