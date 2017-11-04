@@ -38,7 +38,7 @@ ItemTypeMenu.types = [
   { name: "Book",         abbrev: "" },
   { name: "Fun",          abbrev: "" },
   { name: "Item",         abbrev: "" },
-  { name: "OCR",          abbrev: "" },
+  { name: "Ocr",          abbrev: "" },
   { name: "Task",         abbrev: "" },
   { name: "Tweet",        abbrev: "" },
 ];
