@@ -21,6 +21,33 @@ def fake_http_response(url, filename)
   FakeWeb.register_uri(:get, url, body: http_response, content_type: "text/html")
 end
 
+# TODO: Delete fake times after done with prototyping.
+FAKE_NOW = DateTime.parse("2017-10-18 15:06:07 -0700")
+
+class DateTime
+  class << self
+    def now
+      FAKE_NOW
+    end
+  end
+end
+
+class Time
+  class << self
+    def now
+      FAKE_NOW.to_time()
+    end
+  end
+end
+
+class Date
+  class << self
+    def today
+      FAKE_NOW.to_date()
+    end
+  end
+end
+
 module FuturePerfect
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
