@@ -2,7 +2,8 @@ class DashboardController < ApplicationController
   include PrototypeDataHelper
 
   def index
-    @today_weekday = Date.today.strftime("%a")
+    @items_by_time = items_by_time()
+    @today_weekday = today_weekday()
     @items_by_weekday= items_by_weekday
     @todos = todos()
   end

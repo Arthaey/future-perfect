@@ -23,6 +23,43 @@ module PrototypeDataHelper
     }
   end
 
+  def items_by_time
+    items_today = items_by_weekday[today_weekday]
+
+    items_at_home = [
+      Task.new("meditate", category: GoalCategory[:marriage]),
+    ]
+    items_at_home.push(*items_today)
+    items_at_home.push(*[
+      Task.new("dishes", category: GoalCategory[:adulting]),
+    ])
+
+    {
+      "before work": [
+        Task.new("weight", category: GoalCategory[:health]),
+        Task.new("litter", category: GoalCategory[:adulting]),
+        Task.new("journal", category: GoalCategory[:marriage]),
+      ],
+
+      "morning commute": [
+        Task.new("email", category: GoalCategory[:adulting]),
+      ],
+
+      "at work": [
+        Task.new("business-hours errands", category: GoalCategory[:adulting]),
+      ],
+
+      "after work": [
+        Task.new("gym", category: GoalCategory[:health]),
+      ],
+
+      "evening commute": [
+        Task.new("foreign language", category: GoalCategory[:language]),
+      ],
+
+      "at home": items_at_home,
+    }
+  end
 
   def items_by_date
     past = [
@@ -40,6 +77,10 @@ module PrototypeDataHelper
     undated, dated = past.partition { |item| item.timestamp.nil? }
     dated = dated.sort_by!(&:timestamp).reverse.group_by(&:relative_time)
     dated.merge({ "undated": undated })
+  end
+
+  def today_weekday
+    Date.today.strftime("%a")
   end
 
   def items_by_weekday

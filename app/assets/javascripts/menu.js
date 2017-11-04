@@ -45,7 +45,7 @@ Menu.prototype.enableTriggers = function() {
   var that = this;
   var elements = document.querySelectorAll(that.triggerSelector);
   elements.forEach(function(element) {
-    element.addEventListener("click", that.showMenu.bind(that));
+    element.addEventListener("dblclick", that.showMenu.bind(that));
   });
 };
 

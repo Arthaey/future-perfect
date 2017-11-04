@@ -10,6 +10,11 @@
   @extend .fa-stack-1x;
 }
 
+.icon-bg {
+  @extend .icon;
+  color: $body-bg;
+}
+
 .interactive-icon {
   color: $secondary-color;
   cursor: pointer;
@@ -22,15 +27,6 @@
     // fiddled with color picked to match $action-color to "inverted" icon
     filter: invert(100%) hue-rotate(180deg) brightness(260%) saturate(95%);
   }
-}
-
-.icon-bg {
-  @extend .icon;
-  color: $body-bg;
-}
-
-.fa-circle:not(.icon-bg) {
-  font-size: $small-font;
 }
 
 @mixin icon($icon, $bg: null) {
@@ -57,12 +53,20 @@
 .interactive-icon[aria-label='save'] { @include square-icon("save"); }
 .interactive-icon[aria-label='timer'] { @include icon("hourglass"); }
 
+.type-Item {
+  @include circle-icon("circle");
+  .icon {
+    font-size: $small-font;
+  }
+}
+
 .type-Appointment { @include square-icon("calendar"); }
+.item-done .type-Appointment { @include square-icon("calendar-check-o"); }
 .type-Book { @include square-icon("book"); }
 .type-Fun { @include circle-icon("smile-o"); }
-.type-Item { @include circle-icon("circle"); }
 .type-Ocr { @include square-icon("pencil"); }
-.type-Task { @include square-icon("check-square-o"); }
+.type-Task { @include square-icon("square-o"); }
+.item-done .type-Task { @include square-icon("check-square-o"); }
 .type-Tweet { @include circle-icon("twitter"); }
 
 /*

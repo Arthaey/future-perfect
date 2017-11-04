@@ -43,31 +43,68 @@ function saveItem(ev) {
   description.contentEditable = false;
 }
 
+function markAsDone(ev) {
+  var item = ev.target.closest(".item");
+  var itemContainer = item.closest("li");
+
+  var description = item.querySelector(".description").innerText;
+  var allItemsDescriptions = document.querySelectorAll(".item .description");
+  allItemsDescriptions.forEach(function(thisDesc) {
+    if (description == thisDesc.innerText) {
+      thisDesc.closest("li").classList.add("item-done");
+    }
+  });
+
+  var list = itemContainer.closest("ol");
+  if (0 == list.querySelectorAll("li:not(.item-done)").length) {
+    var heading = list.previousElementSibling;
+    heading.classList.add("item-done");
+  }
+
+  var section = itemContainer.closest(".routines");
+  if (0 == section.querySelectorAll("li:not(.item-done)").length) {
+    section.querySelector(".no-items").classList.remove("hidden");
+  }
+}
+
 function initSaveHandlers(root) {
   root.querySelectorAll("[aria-label='save']").forEach(function(save) {
     save.addEventListener("click", saveItem);
   });
 }
 
+function initAddHandlers(root) {
+  var adds = root.querySelectorAll(".interactive-icon[aria-label='add']");
+  adds.forEach(function(add) {
+    add.addEventListener("click", addItem);
+  });
+}
+
+function initDoneHandlers(root) {
+  var icon = root.querySelectorAll(".item .icon");
+  icon.forEach(function(icon) {
+    icon.addEventListener("click", markAsDone);
+  });
+}
+
+function resizeItems(root) {
+  root.querySelectorAll("[data-lines]").forEach(function(element) {
+    element.style.height = (element.dataset.lines * 2) + "rem";
+  });
+}
 
 function init() {
   addIds([".item"]);
   initPomodoros();
   initSaveHandlers(document);
+  initAddHandlers(document);
+  initDoneHandlers(document);
+  resizeItems(document);
 
   var metaMenu = new MetaMenu([
     new CategoryMenu(),
     new ItemTypeMenu()
   ]);
-
-  var adds = document.querySelectorAll(".interactive-icon[aria-label='add']");
-  adds.forEach(function(add) {
-    add.addEventListener("click", addItem);
-  });
-
-  document.querySelectorAll("[data-lines]").forEach(function(element) {
-    element.style.height = (element.dataset.lines * 2) + "rem";
-  });
 }
 
 document.addEventListener("DOMContentLoaded", init);

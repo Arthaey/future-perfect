@@ -21,6 +21,6 @@ RSpec.describe "the dashboard" do
 
   it "shows pomodoro tracking" do
     visit "/pomodoros"
-    expect(page).to have_css("nav .current", text: "Now")
+    expect(page).to have_css("nav .current", text: "Pomodoros")
   end
 end
