@@ -55,8 +55,10 @@ function init() {
   initPomodoros();
   initSaveHandlers(document);
 
-  //var catMenu = new CategoryMenu();
-  var itemTypeMenu = new ItemTypeMenu();
+  var metaMenu = new MetaMenu([
+    new CategoryMenu(),
+    new ItemTypeMenu()
+  ]);
 
   var adds = document.querySelectorAll(".interactive-icon[aria-label='add']");
   adds.forEach(function(add) {

@@ -79,6 +79,14 @@ button, .button {
   background-color: $action-color;
 }
 
+.pie-menu {
+  $size: 300px;
+  position: absolute;
+  left: 500px;
+  top: 500px;
+  z-index: 1;
+}
+
 %spin {
   animation-name: spin;
   animation-duration: 75s;

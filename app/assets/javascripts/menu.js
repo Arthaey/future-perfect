@@ -1,7 +1,8 @@
-var Menu = function(id, size, labels, colors) {
+var Menu = function(id, size, labels, colors, triggerSelector) {
   this.wheelNav = new wheelnav(id, null, size, size);
   this.element = document.getElementById(id);
   this.size = size;
+  this.triggerSelector = triggerSelector;
 
   this.wheelNav.slicePathFunction = slicePath().DonutSlice;
   this.wheelNav.clickModeRotate = false;
@@ -20,21 +21,29 @@ var Menu = function(id, size, labels, colors) {
 };
 
 Menu.prototype.navigateFunction = function(navItem) {
-  console.group("Menu subclass should override navigateFunction.");
-  console.log(this);
-  console.log(navItem);
-  console.groupEnd();
+  console.log("Menu subclass should override navigateFunction.");
 };
 
-Menu.prototype.showMenu = function() {
-  console.group("Menu subclass should override showMenu.");
-  console.log(this);
-  console.groupEnd();
+Menu.prototype.showMenu = function(ev) {
+  var icon = ev.target;
+  var item = icon.closest(".item");
+
+  var halfMenuWidth = this.size / 2;
+  var magicOffset = 7; // :(
+  var left = item.offsetLeft - halfMenuWidth + magicOffset;
+  var top = item.offsetTop - halfMenuWidth + magicOffset;
+
+  this.element.dataset.itemId = item.id;
+  this.element.style.left = left + "px";
+  this.element.style.top = top + "px";
+  this.element.classList.remove("hidden");
+
+  this.wheelNav.refreshWheel();
 };
 
-Menu.prototype.setTriggers = function(selector) {
+Menu.prototype.enableTriggers = function() {
   var that = this;
-  var elements = document.querySelectorAll(selector);
+  var elements = document.querySelectorAll(that.triggerSelector);
   elements.forEach(function(element) {
     element.addEventListener("click", that.showMenu.bind(that));
   });
@@ -65,4 +74,16 @@ Menu.prototype.setNavItemAttr = function(attr, value, index) {
   });
 
   this.wheelNav.refreshWheel();
+};
+
+Menu.alternatingColors = function(length, color1, color2) {
+  if (!color1) color1 = "#cccccc";
+  if (!color2) color2 = "#fafafa";
+
+  var colors = [];
+  for (var i = 0; i < length; i++) {
+    colors[i] = (i % 2 == 0) ? color1 : color2;
+  }
+
+  return colors;
 };

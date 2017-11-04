@@ -4,11 +4,12 @@ var CategoryMenu = function() {
     "category-menu",
     150,
     CategoryMenu.categories.map(function(cat) { return cat.abbrev }),
-    CategoryMenu.categories.map(function(cat) { return cat.color })
+    CategoryMenu.categories.map(function(cat) { return cat.color }),
+    ".item [class*='cat-']"
   );
 
-  this.setNavItemColor(9, "#aaa");
-  this.setTriggers(".item [class*='cat-']");
+  this.setNavItemColor("#aaa", 9);
+  this.metaLabel = "Category";
 };
 
 CategoryMenu.prototype = Object.create(Menu.prototype);
@@ -28,23 +29,6 @@ CategoryMenu.prototype.navigateFunction = function(navItem) {
   icon.classList.add("cat-" + cat.name);
 
   this.element.classList.add("hidden");
-}
-
-CategoryMenu.prototype.showMenu = function(ev) {
-  var icon = ev.target;
-  var item = icon.closest(".item");
-
-  var halfMenuWidth = this.size / 2;
-  var magicOffset = 7; // :(
-  var left = item.offsetLeft - halfMenuWidth + magicOffset;
-  var top = item.offsetTop - halfMenuWidth + magicOffset;
-
-  this.element.dataset.itemId = item.id;
-  this.element.style.left = left + "px";
-  this.element.style.top = top + "px";
-  this.element.classList.remove("hidden");
-
-  this.wheelNav.refreshWheel();
 }
 
 CategoryMenu.categories = [

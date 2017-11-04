@@ -1,14 +1,17 @@
 var ItemTypeMenu = function() {
+  var labels = ItemTypeMenu.types.map(function(type) { return type.abbrev });
+
   Menu.call(
     this,
     "item-type-menu",
     150,
-    ItemTypeMenu.types.map(function(type) { return type.abbrev }),
-    ItemTypeMenu.types.map(function(type) { return type.color })
+    labels,
+    Menu.alternatingColors(labels.length),
+    ".item [class*='type-']"
   );
 
-  this.setTriggers(".item [class*='type-']");
   this.setNavItemFont("normal normal normal 14px/1 FontAwesome");
+  this.metaLabel = "Type";
 };
 
 ItemTypeMenu.prototype = Object.create(Menu.prototype);
@@ -30,32 +33,12 @@ ItemTypeMenu.prototype.navigateFunction = function(navItem) {
   this.element.classList.add("hidden");
 }
 
-ItemTypeMenu.prototype.showMenu = function(ev) {
-  var icon = ev.target;
-  var item = icon.closest(".item");
-
-  var halfMenuWidth = this.size / 2;
-  var magicOffset = 7; // :(
-  var left = item.offsetLeft - halfMenuWidth + magicOffset;
-  var top = item.offsetTop - halfMenuWidth + magicOffset;
-
-  this.element.dataset.itemId = item.id;
-  this.element.style.left = left + "px";
-  this.element.style.top = top + "px";
-  this.element.classList.remove("hidden");
-
-  this.wheelNav.refreshWheel();
-}
-
-ItemTypeMenu.color1 = "#cccccc";
-ItemTypeMenu.color2 = "#fafafa";
-
 ItemTypeMenu.types = [
-  { name: "Appointment",  abbrev: "",  color: ItemTypeMenu.color1 },
-  { name: "Book",         abbrev: "",  color: ItemTypeMenu.color2 },
-  { name: "Fun",          abbrev: "",  color: ItemTypeMenu.color1 },
-  { name: "Item",         abbrev: "",  color: ItemTypeMenu.color2 },
-  { name: "OCR",          abbrev: "",  color: ItemTypeMenu.color1 },
-  { name: "Task",         abbrev: "",  color: ItemTypeMenu.color2 },
-  { name: "Tweet",        abbrev: "",  color: ItemTypeMenu.color1 },
+  { name: "Appointment",  abbrev: "" },
+  { name: "Book",         abbrev: "" },
+  { name: "Fun",          abbrev: "" },
+  { name: "Item",         abbrev: "" },
+  { name: "OCR",          abbrev: "" },
+  { name: "Task",         abbrev: "" },
+  { name: "Tweet",        abbrev: "" },
 ];
