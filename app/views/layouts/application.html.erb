@@ -21,6 +21,10 @@
           <%= render partial: "nav_link", locals: { text: "Pomodoros", paths: [pomodoros_path] } %>
         </ul>
       </nav>
+
+      <div class="today">
+        <%= Date.today.strftime("%A, %b %e, %Y") %>
+      </div>
     </header>
 
     <main role="main">

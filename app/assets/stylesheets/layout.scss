@@ -16,11 +16,15 @@ main, header, footer, .sidebar {
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   padding-bottom: 0;
   border-bottom: 2px solid $secondary-color;
 }
 
 nav ul {
+  flex-grow: 1;
   display: flex;
   list-style: none;
   margin-bottom: 0;
