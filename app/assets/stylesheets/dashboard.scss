@@ -69,7 +69,15 @@
     border-left: 3px solid $secondary-color;
     display: flex;
     align-items: center;
-    min-height: 2rem;
+    min-height: 1rem;
+  }
+
+  li:not(.item-done):first-child {
+    padding-top: 0.5rem;
+  }
+
+  li:not(.item-done):last-child {
+    padding-bottom: 0.5rem;
   }
 
   .timestamp {
