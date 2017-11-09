@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def to_css_id(str)
+    str.strip.gsub(/\s+/, '-').gsub(/[^\w_-]/, '')
+  end
+
   def semantic_icon(meaning, options = {})
     return icon_tag(meaning, false, options)
   end

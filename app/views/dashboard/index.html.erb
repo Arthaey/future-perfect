@@ -1,14 +1,11 @@
-<section class="routines">
-  <h2>Today</h2>
+<h2>Today</h2>
 
-  <%- @items_by_time.each do |time_range, items| %>
-    <h3><%= time_range %></h3>
-    <ol class="items timeline-vertical">
-    <%- items.each do |item| %>
-      <li><%= render partial: "item", object: item %></li>
-    <%- end %>
-    </ol>
-  <%- end %>
+<section class="routines">
+  <%= render partial: "vertical_grouped_items", locals: {
+        grouped_items: @items_by_time,
+        highlight_group: "after work",
+      }
+  %>
 
   <p class="no-items hidden">
     Done for today! Relax or something. :)

@@ -56,13 +56,13 @@ function markAsDone(ev) {
   });
 
   var list = itemContainer.closest("ol");
-  if (0 == list.querySelectorAll("li:not(.item-done)").length) {
+  if (0 == list.querySelectorAll("li:not(.item-done):not(.hidden)").length) {
     var heading = list.previousElementSibling;
     heading.classList.add("item-done");
   }
 
   var section = itemContainer.closest(".routines");
-  if (0 == section.querySelectorAll("li:not(.item-done)").length) {
+  if (0 == section.querySelectorAll("li:not(.item-done):not(.hidden)").length) {
     section.querySelector(".no-items").classList.remove("hidden");
   }
 }
@@ -81,7 +81,7 @@ function initAddHandlers(root) {
 }
 
 function initDoneHandlers(root) {
-  var icon = root.querySelectorAll(".item .icon");
+  var icon = root.querySelectorAll(".item-icon");
   icon.forEach(function(icon) {
     icon.addEventListener("click", markAsDone);
   });

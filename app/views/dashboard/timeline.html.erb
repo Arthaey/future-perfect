@@ -1,9 +1,6 @@
 <h2>Timeline</h2>
-<%- @items_by_date.each do |date_range, items| %>
-  <h3><%= date_range %></h3>
-  <ol class="items timeline-vertical">
-  <%- items.each do |item| %>
-    <li><%= render partial: "item", object: item %></li>
-  <%- end %>
-  </ol>
-<%- end %>
+<%= render partial: "vertical_grouped_items", locals: {
+      grouped_items: @items_by_date,
+      highlight_group: "today",
+    }
+%>

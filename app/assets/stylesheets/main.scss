@@ -54,7 +54,7 @@ button, .button {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .screenreader-only {

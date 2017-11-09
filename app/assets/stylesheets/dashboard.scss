@@ -16,6 +16,7 @@
   line-height: 1rem;
   min-height: 1rem;
   padding-left: $indent;
+  width: 100%;
 
   .icon-with-bg {
     display: inline;
@@ -70,14 +71,12 @@
     display: flex;
     align-items: center;
     min-height: 1rem;
-  }
-
-  li:not(.item-done):first-child {
     padding-top: 0.5rem;
-  }
-
-  li:not(.item-done):last-child {
     padding-bottom: 0.5rem;
+
+    & + li {
+      padding-top: 0;
+    }
   }
 
   .timestamp {
@@ -114,6 +113,10 @@
 
 .highlight {
   border: 2px solid $accent-color;
+}
+
+.routines {
+  width: 30%;
 }
 
 .routines .item-done {

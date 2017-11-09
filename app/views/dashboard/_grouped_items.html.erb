@@ -13,7 +13,7 @@
 
 <ol class="timeline-horizontal zebra">
   <%- groups.each do |group| %>
-  <%- add_to_id = "items-#{group}" %>
+  <%- add_to_id = to_css_id("items-#{group}") %>
   <li class=<%= highlight_group == group ? "highlight" : "" %>>
     <h3>
       <span class=<%= group_classes[group] %>>
