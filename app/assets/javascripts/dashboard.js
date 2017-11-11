@@ -56,15 +56,20 @@ function markAsDone(ev) {
   });
 
   var list = itemContainer.closest("ol");
-  if (0 == list.querySelectorAll("li:not(.item-done):not(.hidden)").length) {
+  if (hasNoIncompleteItems(list)) {
     var heading = list.previousElementSibling;
     heading.classList.add("item-done");
   }
 
   var section = itemContainer.closest(".routines");
-  if (0 == section.querySelectorAll("li:not(.item-done):not(.hidden)").length) {
+  if (hasNoIncompleteItems(section)) {
     section.querySelector(".no-items").classList.remove("hidden");
   }
+}
+
+function hasNoIncompleteItems(container) {
+  var selector = "li:not(.item-done):not(.hidden)";
+  return container && container.querySelectorAll(selector).length == 0;
 }
 
 function initSaveHandlers(root) {
