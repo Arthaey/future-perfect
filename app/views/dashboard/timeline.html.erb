@@ -1,6 +1,7 @@
 <h2>Timeline</h2>
-<%= render partial: "vertical_grouped_items", locals: {
+<%= render partial: "grouped_items", locals: {
       grouped_items: @items_by_date,
       highlight_group: "today",
+      direction: "vertical",
     }
 %>

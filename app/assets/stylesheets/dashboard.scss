@@ -53,20 +53,14 @@
   }
 }
 
-.items {
-  list-style: none;
-  padding: 0;
-
-  li + li {
-    padding-top: $breathing-room;
-  }
+.items li + li {
+  padding-top: $breathing-room;
 }
 
 .timeline-vertical {
-  @extend .items;
   margin-left: $breathing-room;
 
-  li {
+  .items li {
     border-left: 3px solid $secondary-color;
     display: flex;
     align-items: center;
@@ -83,18 +77,14 @@
     margin-left: $breathing-room / 2;
   }
 
-  .icon-with-bg {
+  .icon-with-bg:not(.interactive-icon) {
     top: 0;
     left: -($indent + $breathing-room / 2);
-  }
-
-  .fa-circle {
-    left: 0.2rem; // why? :(
   }
 }
 
 .timeline-horizontal {
-  @extend .items;
+  @extend .zebra;
   display: flex;
 
   > li {

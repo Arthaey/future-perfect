@@ -6,24 +6,26 @@
   grouped_items.default = []
 
   # optional locals
+  direction ||= "vertical"
   highlight_group ||= nil
   group_names   ||= groups.each_with_object({}) { |g, hash| hash[g] = g }
   group_classes ||= groups.each_with_object({}) { |g, hash| hash[g] = g }
 -%>
 
-<ol class="timeline-horizontal zebra">
-  <%- groups.each do |group| %>
+<ol class=<%= "timeline-#{direction}" %>>
+<%- grouped_items.each do |group, items| %>
   <%- add_to_id = to_css_id("items-#{group}") %>
-  <li class=<%= highlight_group == group ? "highlight" : "" %>>
+
+  <li class=<%= highlight_group == group.to_s ? "highlight" : "" %>>
     <h3>
-      <span class=<%= group_classes[group] %>>
+      <span class=<%= to_css_id(group_classes[group]) %>>
         <%= group_names[group] %>
       </span>
       <%= interactive_icon("add", "data-add-to": add_to_id) %>
     </h3>
 
     <ol class="items" id=<%= add_to_id %>>
-      <%- grouped_items[group].each do |item| %>
+      <%- items.each do |item| %>
         <li><%= render partial: "item", object: item %></li>
       <%- end %>
       <li class="hidden">
@@ -31,5 +33,6 @@
       </li>
     </ol>
   </li>
-  <%- end %>
+
+<%- end %>
 </ol>

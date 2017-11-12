@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def to_css_id(str)
-    str.strip.gsub(/\s+/, '-').gsub(/[^\w_-]/, '')
+    str.to_s.strip.gsub(/\s+/, '-').gsub(/[^\w_-]/, '')
   end
 
   def semantic_icon(meaning, options = {})

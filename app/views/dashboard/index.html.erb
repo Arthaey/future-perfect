@@ -1,9 +1,10 @@
 <h2>Today</h2>
 
 <section class="routines">
-  <%= render partial: "vertical_grouped_items", locals: {
+  <%= render partial: "grouped_items", locals: {
         grouped_items: @items_by_time,
         highlight_group: "after work",
+        direction: "vertical",
       }
   %>
 
@@ -16,6 +17,7 @@
 <%= render partial: "grouped_items", locals: {
       grouped_items: @items_by_weekday,
       highlight_group: @today_weekday,
+      direction: "horizontal",
     }
 %>
 
