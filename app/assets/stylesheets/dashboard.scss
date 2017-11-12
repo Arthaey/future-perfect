@@ -81,6 +81,10 @@
     top: 0;
     left: -($indent + $breathing-room / 2);
   }
+
+  .highlight li {
+    background-color: $accent-light-color;
+  }
 }
 
 .timeline-horizontal {
@@ -99,10 +103,10 @@
     border-bottom: 1px solid;
     @extend .heading-with-action;
   }
-}
 
-.highlight {
-  border: 2px solid $accent-color;
+  .highlight {
+    border: 2px solid $accent-color;
+  }
 }
 
 .routines {
